@@ -3,7 +3,7 @@ import './collection-item.styles.scss';
 
 const CollectionItem = () => (
     <div className='collection-item'>
-        Name
+        Name Surname
     </div>
 )
 
