@@ -14,24 +14,17 @@
         border-bottom-color: rgba(9,30,66,.25);
     }
 
-    &.backdrop {
-        position: fixed;
-        z-index: 1040;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: #000;
-        opacity: 0.5;
-    }
 }
 
-.modal-collection-item {
+.modal-contents {
     position: fixed;
     width: 400px;
+    top: 2.3rem;
+    left: 1.1rem;
     z-index: 1040;
     border: 1px solid #e5e5e5;
     background-color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     padding: 20px;
 }
+
