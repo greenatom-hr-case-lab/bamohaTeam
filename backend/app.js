@@ -4,10 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
+const config = require("./config/db");
+const mongoose = require("mongoose");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var APIRouter = require('./routes/API');
+const { Mongoose } = require('mongoose');
 
 var app = express();
 
@@ -43,3 +46,15 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+// Поключение к базе данных
+mongoose.connect(config.db);
+
+// Обработчики подключения
+mongoose.connection.on("connected", () => {
+    console.log("Connection Success");
+});
+
+mongoose.connection.on("error", (err) => {
+  console.log("Failed to connect, error: " + err);
+});
