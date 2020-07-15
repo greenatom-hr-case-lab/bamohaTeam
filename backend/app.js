@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cors = require("cors");
 const config = require("./config/db");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -48,7 +49,7 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 // Поключение к базе данных
-mongoose.connect(config.db);
+mongoose.connect(config.db, {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Обработчики подключения
 mongoose.connection.on("connected", () => {
@@ -58,3 +59,7 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (err) => {
   console.log("Failed to connect, error: " + err);
 });
+
+// поключаем библиотеку, которая поможет считывать информацию с форм на странице
+app.use(bosyParser.json())
+
