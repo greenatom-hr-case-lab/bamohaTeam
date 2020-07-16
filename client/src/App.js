@@ -28,14 +28,15 @@ class App extends React.Component {
   }
 
   componentWillUpdate() {
-    const { location } = this.props;
+    const {location} = this.props;
     if (!(location.state && location.state.modal)) {
       this.previousLocation = this.props.location;
     }
+
   }  
 
   render() {
-    const { location } = this.props;
+    const {location} = this.props;
     const isModal = (
       location.state &&
       location.state.modal &&
@@ -48,13 +49,13 @@ class App extends React.Component {
         
         <Switch location={isModal ? this.previousLocation : location}>
           <Route exact path='/' component={HomePage} />
-          <Route path='/plan' component={ShowPlanPage} />
-          <Route exact path="/modal/:id" component={Modal} />
+          <Route exact path='/plan/' component={ShowPlanPage} />
+          <Route exact path="/plan/:id" component={Modal} />
           <Route>{'404'}</Route>
         </Switch>
 
         {isModal
-          ? <Route exact path="/modal/:id">
+          ? <Route exact path="/plan/:id" >
               <Modal isModal />
             </Route>
           : null

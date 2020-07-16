@@ -2,7 +2,7 @@ import React from 'react';
 
 import Plan from '../plan/plan.component';
 
-import {withRouter} from 'react-router-dom';
+import {withRouter, Redirect} from 'react-router-dom';
 
 import './modal.styles.scss';
 
@@ -10,14 +10,10 @@ class Modal extends React.Component {
     constructor(props){
         super(props);
         this.modalRef = React.createRef();
-    }
-
-    componentDidMount() {
-        const { isModal } = this.props;
-    }
+    } 
     
     render() {
-        const { id } = this.props.match.params;
+        const {id} = this.props.match.params;
 
         if (this.props.isModal) {
             return(
@@ -37,7 +33,7 @@ class Modal extends React.Component {
                 </div>
     )} else {
         return (
-          <div className='no-modal-wrapper'> 404 </div>
+            <Redirect to='/' />
     )}
 }}
 
