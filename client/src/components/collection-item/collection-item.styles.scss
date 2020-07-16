@@ -1,5 +1,6 @@
 .collection-item {
     background-color: #fff;
+    color: black;
     box-shadow: 0 1px 0 rgba(9,30,66,.25);
     border-radius: 0.35rem;
     min-height: 45px;
@@ -14,17 +15,5 @@
         border-bottom-color: rgba(9,30,66,.25);
     }
 
-}
-
-.modal-contents {
-    position: fixed;
-    width: 400px;
-    top: 2.3rem;
-    left: 1.1rem;
-    z-index: 1040;
-    border: 1px solid #e5e5e5;
-    background-color: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    padding: 20px;
 }
 
