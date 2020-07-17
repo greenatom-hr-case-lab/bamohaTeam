@@ -61,5 +61,5 @@ mongoose.connection.on("error", (err) => {
 });
 
 // поключаем библиотеку, которая поможет считывать информацию с форм на странице
-app.use(bosyParser.json())
+app.use(bodyParser.json())
 
