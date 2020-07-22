@@ -28,12 +28,12 @@ class Modal extends React.Component {
                         className='modal'
                         onClick={e => e.stopPropagation()}
                     >
-                        <Plan />
+                        <Plan key={id}/>
                     </div>
                 </div>
     )} else {
         return (
-            <Redirect to='/' />
+            <Redirect to='/plans' />
     )}
 }}
 

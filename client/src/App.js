@@ -2,6 +2,7 @@ import React from 'react';
 
 import HomePage from './pages/homepage/homepage.component';
 import ShowPlanPage from './pages/show-plan-page/show-plan-page.component';
+import RegistrationPage from './pages/registration-page/registration-page.component';
 import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 import Modal from './components/modal/modal.component';
@@ -48,14 +49,15 @@ class App extends React.Component {
         <Header />
         
         <Switch location={isModal ? this.previousLocation : location}>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/plan/' component={ShowPlanPage} />
-          <Route exact path="/plan/:id" component={Modal} />
+          <Route excat path='/register' component={RegistrationPage} />
+          <Route exact path='/plans' component={HomePage} />
+          <Route exact path='/plan/:id' component={ShowPlanPage} />
+          <Route exact path="/c/plan/:id" component={Modal} />
           <Route>{'404'}</Route>
         </Switch>
 
         {isModal
-          ? <Route exact path="/plan/:id" >
+          ? <Route exact path="/c/plan/:id" >
               <Modal isModal />
             </Route>
           : null
