@@ -4,7 +4,7 @@ import StageCollection from '../stage-collection/stage-collection.component';
 
 import './list-collection.styles.scss'
 
-const ListCollection = ({items}) => (
+const ListCollection = () => (
     <div className='list-collection'>
         <StageCollection key='1' title='Создание плана'/>
         <StageCollection key='2' title='Заполнение сотрудником'/>

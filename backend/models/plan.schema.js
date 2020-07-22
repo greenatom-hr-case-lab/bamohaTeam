@@ -33,6 +33,7 @@ let planSchema = new Schema({
                 'In_progress',
                 'Boss_evaluation',
                 'Evaluation_complete'],
+        default: 'Plan_creation',
         required: true
     },
     grade: {
