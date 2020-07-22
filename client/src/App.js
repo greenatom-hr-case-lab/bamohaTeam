@@ -16,10 +16,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.previousLocation = this.props.location;
-    this.state = { apiResponse: '' };
+    //this.state = { apiResponse: '' };
   }
 
-  callAPI() {
+  /*callAPI() {
     fetch('http://localhost:9000/API')
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
@@ -27,7 +27,7 @@ class App extends React.Component {
 
   componentWillMount() {
     this.callAPI();
-  }
+  } */
 
   componentWillUpdate() {
     const {location} = this.props;
@@ -46,7 +46,7 @@ class App extends React.Component {
     );
 
     return (
-      <div className='app'>
+      <div className='App'>
         <Header />
         
         <Switch location={isModal ? this.previousLocation : location}>
@@ -65,7 +65,6 @@ class App extends React.Component {
         }
 
         <Footer />
-        <p className="App-intro">{this.state.apiResponse}</p>
       </div>
     );
   }
