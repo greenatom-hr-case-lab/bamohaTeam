@@ -4,21 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
+const { Mongoose } = require('mongoose');
 
 const config = require("./config/db");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-/*var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var APIRouter = require('./routes/API'); */
-
 const userRoute = require('./routes/user.routes');
-const planRouter = require('./routes/plan.routes');
-const taskRouter = require('./routes/task.routes');
-const commentRouter = require('./routes/comment.routes');
-
-const { Mongoose } = require('mongoose');
+const planRoute = require('./routes/plan.routes');
+const taskRoute = require('./routes/task.routes');
+const commentRoute = require('./routes/comment.routes');
 
 var app = express();
 
@@ -38,10 +33,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
-/*app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use("/API", APIRouter); */
 
 app.use('/users', userRoute);
 app.use('/plans', planRoute);
