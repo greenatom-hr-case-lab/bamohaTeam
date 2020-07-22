@@ -6,8 +6,7 @@ let userSchema = new Schema({
     name: {
         first_name: String,
         surname: String,
-        patronymic: String,
-        required: true
+        patronymic: String
     },
     email: {
         type: String,
