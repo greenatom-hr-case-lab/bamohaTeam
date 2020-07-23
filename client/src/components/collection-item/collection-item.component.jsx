@@ -7,6 +7,7 @@ import './collection-item.styles.scss';
 const CollectionItem = () => {
 
     return(
+
         <Link 
             className='collection-item'
             to={{

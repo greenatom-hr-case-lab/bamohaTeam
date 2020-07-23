@@ -1,19 +1,37 @@
 .collection-item {
-    background-color: #fff;
-    color: black;
-    box-shadow: 0 1px 0 rgba(9,30,66,.25);
-    border-radius: 0.35rem;
+    /*background-color: rgba(0, 255, 255, 0.5);*/
+    color: white;
+    /*box-shadow: 0 1px 0 rgba(9,30,66,.25);*/
+    /*border-radius: 0.35rem;*/
     min-height: 45px;
     margin: 0.15rem 0.45rem;
     display: block;
     position: relative;
     text-decoration: none;
     cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
-        opacity: 0.65;
-        border-bottom-color: rgba(9,30,66,.25);
+        background-color: rgba(0, 255, 255, 0.2);
+        border-radius: 5px;
+    }
+
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 50%; /* <— put left edge in the middle */
+        margin-left: -20%; /* <— shift to the left by half of the width */
+        width: 40%;
+        height: 1px;
+        background: #fff;
+        content: '';
     }
 
 }
 
+.collection-item > span {
+    margin: auto;
+}
