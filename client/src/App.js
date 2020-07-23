@@ -50,7 +50,7 @@ class App extends React.Component {
         <Header />
         
         <Switch location={isModal ? this.previousLocation : location}>
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/' component={Registration} />
           <Route exact path='/plan/' component={ShowPlanPage} />
           <Route exact path="/plan/:id" component={Modal} />
           <Route exact path='/registration/' component={Registration} />
