@@ -5,6 +5,7 @@ import Header from './components/header/header.component';
 
 import {Switch, Route} from 'react-router-dom';
 
+import './reset.css';
 import './App.css';
 
 class App extends React.Component {
