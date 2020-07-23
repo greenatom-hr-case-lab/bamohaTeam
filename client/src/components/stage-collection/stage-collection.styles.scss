@@ -1,11 +1,24 @@
 .stage-collection {
-    width: 16%;
+    width: 19%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: relative;
 
+    background-color: #ebecf0;
+    border-radius: 0.45rem;
+    max-height: 100%;
+    white-space: normal;
+
+    margin: 0.4rem 0;
+
+    .title-block {
+        margin: 0.65rem 0.6rem;
+        height: 30px;
+        display: flex;
+        align-items: center;
+    }
+
     .stage-title {
-        text-decoration: underline;
+        vertical-align: middle;
     }
 }

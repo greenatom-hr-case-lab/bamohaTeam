@@ -1,0 +1,36 @@
+.header {
+    background-color: rgba(25, 25, 25, 0.85);
+    color: rgb(34, 255, 255);
+}
+
+.header > * {
+	display: inline-block;
+	margin: auto 0;
+	vertical-align: middle;
+}
+
+.header > h1 {
+	margin-left: 90px; 
+}
+
+.header > div > * {
+	vertical-align: middle;
+	display: inline-block;
+	margin: 10px;
+	text-decoration: none;
+}
+
+.header > div > .img {
+	height: 40px;
+	width: 40px;
+	background-color: rgb(34, 255, 255);
+	border-radius: 35px;
+
+}
+#prof {
+	margin-left: calc(100% - 450px);
+}
+
+#prof > a {
+	color: rgb(34, 255, 255);
+}
