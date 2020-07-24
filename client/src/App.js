@@ -6,9 +6,11 @@ import RegistrationPage from './pages/registration-page/registration-page.compon
 import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 import Modal from './components/modal/modal.component';
+import RegistrationPage from './pages/registration-page/registration-page.component';
 
 import {Switch, Route, withRouter} from 'react-router-dom';
 
+import './reset.css';
 import './App.css';
 
 class App extends React.Component {
@@ -23,7 +25,6 @@ class App extends React.Component {
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
   }
-
   componentWillMount() {
     this.callAPI();
   } */
@@ -49,10 +50,12 @@ class App extends React.Component {
         <Header />
         
         <Switch location={isModal ? this.previousLocation : location}>
+
           <Route excat path='/register' component={RegistrationPage} />
           <Route exact path='/plans' component={HomePage} />
           <Route exact path='/plan/:id' component={ShowPlanPage} />
           <Route exact path="/c/plan/:id" component={Modal} />
+
           <Route>{'404'}</Route>
         </Switch>
 
