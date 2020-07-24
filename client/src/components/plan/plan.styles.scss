@@ -1,4 +1,17 @@
 .plan {
-	color: white;
-    border: green 2px;
+    display: flex;
+    color: #fff;
+    position: relative;
+    max-height: 100%;
+
+    .info, .tasks {
+        flex: 50%;
+        overflow-y: scroll;
+        margin: 0.2rem 0.2rem;
+
+    }
+
+    .info {
+
+    }
 }

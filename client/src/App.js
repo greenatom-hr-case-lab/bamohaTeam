@@ -6,7 +6,6 @@ import RegistrationPage from './pages/registration-page/registration-page.compon
 import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 import Modal from './components/modal/modal.component';
-import RegistrationPage from './pages/registration-page/registration-page.component';
 
 import {Switch, Route, withRouter} from 'react-router-dom';
 

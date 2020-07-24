@@ -9,13 +9,19 @@ const Plan = (props) => {
 
     return(
         <div className='plan'>
-            <span className='title'>Фамилия Имя Отчетсво</span>
-            <p>Руководитель - delafroer</p>
-            <p>HR - dmitry</p>
-            <p>Должность - janitor</p>
-            <p>Оценка</p>
-            <TaskCollection />
-            <CommentCollection/>
+            <div className='info'>
+                <textarea className='title'>Фамилия Имя Отчетсво</textarea>
+                <textarea className='position'>Должность - janitor</textarea>
+                <span className='hr'>HR - dmitry</span>
+                <span className='boss'>Руководитель - delafroer</span>
+                <span className='grade'>Оценка</span>
+                <span className='result'>Выполнено</span>
+                <CommentCollection/>
+            </div>
+            <div className='tasks'>
+                <h2>Задачи</h2>
+                <TaskCollection />
+            </div>
         </div>
     );
 }
