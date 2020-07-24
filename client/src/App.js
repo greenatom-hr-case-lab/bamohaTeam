@@ -5,9 +5,11 @@ import ShowPlanPage from './pages/show-plan-page/show-plan-page.component';
 import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 import Modal from './components/modal/modal.component';
+import RegistrationPage from './pages/registration-page/registration-page.component';
 
 import {Switch, Route, withRouter} from 'react-router-dom';
 
+import './reset.css';
 import './App.css';
 
 class App extends React.Component {
@@ -22,7 +24,6 @@ class App extends React.Component {
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
   }
-
   componentWillMount() {
     this.callAPI();
   } */
@@ -51,6 +52,7 @@ class App extends React.Component {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/plan/' component={ShowPlanPage} />
           <Route exact path="/plan/:id" component={Modal} />
+          <Route exact path="/registration" component={RegistrationPage} />
           <Route>{'404'}</Route>
         </Switch>
 
