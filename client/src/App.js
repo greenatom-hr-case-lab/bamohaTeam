@@ -5,27 +5,28 @@ import ShowPlanPage from './pages/show-plan-page/show-plan-page.component';
 import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 import Modal from './components/modal/modal.component';
+import RegistrationPage from './pages/registration-page/registration-page.component';
 
 import {Switch, Route, withRouter} from 'react-router-dom';
 
+import './reset.css';
 import './App.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.previousLocation = this.props.location;
-    this.state = { apiResponse: '' };
+    //this.state = { apiResponse: '' };
   }
 
-  callAPI() {
+  /*callAPI() {
     fetch('http://localhost:9000/API')
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
   }
-
   componentWillMount() {
     this.callAPI();
-  }
+  } */
 
   componentWillUpdate() {
     const {location} = this.props;
@@ -44,13 +45,14 @@ class App extends React.Component {
     );
 
     return (
-      <div className='app'>
+      <div className='App'>
         <Header />
         
         <Switch location={isModal ? this.previousLocation : location}>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/plan/' component={ShowPlanPage} />
           <Route exact path="/plan/:id" component={Modal} />
+          <Route exact path="/registration" component={RegistrationPage} />
           <Route>{'404'}</Route>
         </Switch>
 
@@ -62,7 +64,6 @@ class App extends React.Component {
         }
 
         <Footer />
-        <p className="App-intro">{this.state.apiResponse}</p>
       </div>
     );
   }

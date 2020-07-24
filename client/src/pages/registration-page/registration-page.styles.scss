@@ -1,0 +1,22 @@
+.header{
+	/*position: fixed;*/
+}
+
+.registration-page > div {
+	display: inline-block;
+}
+
+.bg-img {
+	width: 50%;
+	height: 86vh;
+	background-image: url(../../assets/signin_background.jpg); 
+	background-size: cover;
+	background-position: 50% 85%;
+	/*background-position: bottom ;*/
+}
+
+.log-reg {
+	background-color: rgb(25,25,25);
+	width: 50%;
+	height: 86vh;
+}
