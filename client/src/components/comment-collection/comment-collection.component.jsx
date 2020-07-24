@@ -6,6 +6,7 @@ import './comment-collection.styles.scss';
 
 const CommentCollection = () => (
     <div className='comment-collection'>
+        <textarea className='comment-form' placeholder='Комментарий'></textarea>
         <CommentItem />
         <CommentItem />
     </div>
