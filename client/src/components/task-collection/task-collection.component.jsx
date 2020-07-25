@@ -8,9 +8,9 @@ const TaskCollection = () => {
 
     return(
         <div className='task-collection'>
+            <textarea className='new-task' placeholder='Добавить задачу'></textarea>
             <TaskItem />
             <TaskItem />
-            <button>Добавить задачу</button>
         </div>
     )
 }

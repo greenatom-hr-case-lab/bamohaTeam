@@ -2,10 +2,10 @@ import React from 'react';
 
 import './custom-button.styles.scss';
 
-const CustomButton = () => (
-    <div className='custom-button'>
-        
-    </div>
+const CustomButton = ({text}) => (
+    <button className='custom-button'>
+        {text}
+    </button>
 )
 
 export default CustomButton;

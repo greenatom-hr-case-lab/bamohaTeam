@@ -1,0 +1,28 @@
+.graded-plan {
+    color: white;
+    min-height: 45px;
+    width: 90%;
+    margin: 0.4rem 0.45rem;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: rgba(0, 255, 255, 0.2);
+        border-radius: 5px;
+        color: #fff;
+    }
+
+    .name {
+        width: 60%;
+    }
+
+    .grade, .result {
+        width: 20%;
+    }
+}
