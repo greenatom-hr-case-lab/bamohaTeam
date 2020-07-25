@@ -1,15 +1,26 @@
 import React from 'react';
 
+import {Link} from 'react-router-dom';
+
 import './header.styles.scss';
 
 const Header = () => (
     <div className='header'>
-        <img src="" alt=""/>
-        <h1>ADAPTATION</h1>
-        <div id="prof">
-        	<a href="" target="_blank">Оценки</a>
-        	<a href="" target="_blank">Иван Иванов</a>
-        	<div class="img"></div>
+        <Link 
+            className='logo-container'
+            to='/plans'>
+                ADAPTATION
+        </Link>
+        
+        <div className='navigation'>
+        	<Link to='/grades' className='nav-option'>Оценки</Link>
+        	<Link to='/register' className='nav-option'>
+                Профиль
+                <img className='profile-pic' 
+                    src={require('../../assets/users/christian.jpg')} 
+                    alt='userpic'
+                />
+            </Link>
         </div>
     </div>
 )

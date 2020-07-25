@@ -11,6 +11,10 @@ class Modal extends React.Component {
         super(props);
         this.modalRef = React.createRef();
     } 
+
+    /* 
+        onClick на wrapper также должен сохранять всю инфу и отправлять ее в бд
+    */
     
     render() {
         const {id} = this.props.match.params;
