@@ -8,6 +8,7 @@ import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 import Modal from './components/modal/modal.component';
 
+
 import {Switch, Route, withRouter} from 'react-router-dom';
 
 import './reset.css';
@@ -45,7 +46,6 @@ class App extends React.Component {
         <Header />
         
         <Switch location={isModal ? this.previousLocation : location}>
-
           {/*
             Редирект со страницы регистрации, если юзер уже залогинился
           */}
@@ -55,7 +55,6 @@ class App extends React.Component {
           <Route exact path='/plan/:id' component={ShowPlanPage} />
           <Route exact path='/grades' component={ShowGradesPage} />
           <Route exact path="/c/plan/:id" component={Modal} />
-
           <Route>{'404'}</Route>
         </Switch>
 
