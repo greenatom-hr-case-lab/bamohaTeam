@@ -60,7 +60,7 @@ class SignInForm extends React.Component {
                         placeholder="Your password"
                         required/>
                     <div className='buttons'>
-                        <CustomButton type="submit" onClick = {} >Sign in</CustomButton>
+                        <CustomButton type="submit"  >Sign in</CustomButton>
                         <CustomButton type="submit">Sign up</CustomButton>
                     </div>
                 </form>

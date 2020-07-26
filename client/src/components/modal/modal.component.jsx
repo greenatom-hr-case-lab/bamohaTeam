@@ -11,6 +11,10 @@ class Modal extends React.Component {
         super(props);
         this.modalRef = React.createRef();
     } 
+
+    /* 
+        onClick на wrapper также должен сохранять всю инфу и отправлять ее в бд
+    */
     
     render() {
         const {id} = this.props.match.params;
@@ -28,12 +32,12 @@ class Modal extends React.Component {
                         className='modal'
                         onClick={e => e.stopPropagation()}
                     >
-                        <Plan />
+                        <Plan key={id}/>
                     </div>
                 </div>
     )} else {
         return (
-            <Redirect to='/' />
+            <Redirect to='/plans' />
     )}
 }}
 

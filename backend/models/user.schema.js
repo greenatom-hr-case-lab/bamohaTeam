@@ -4,9 +4,8 @@ const Schema = mongoose.Schema;
 let userSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: {
-        first_name: String,
-        surname: String,
-        patronymic: String
+        type: String,
+        required: true
     },
     email: {
         type: String,
@@ -16,7 +15,8 @@ let userSchema = new Schema({
             },
             message: props => `${props.value} is not a valid email!`
           },
-          required: true
+          required: true,
+          unique: true
           
     },
     password: { 
@@ -26,6 +26,7 @@ let userSchema = new Schema({
     role: {
         type: String,
         enum: ['hr', 'boss', 'employee'],
+        default: 'employee',
         required: true
     },
     plans: [{

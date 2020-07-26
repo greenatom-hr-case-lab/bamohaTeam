@@ -4,62 +4,45 @@ let mongoose = require('mongoose'),
 
 let user = require('../models/user.schema');
 
-router.route('/create').post((req, res, next) => {
-    user.create(req.body, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            console.log(data)
-            res.json(data)
-        }
-    })
+router.route('/create').post( async (req, res, next) => {
+    try {
+    
+    } catch(e) {
+        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
 });
 
-router.route('/').get((req, res) => {
-    user.find((error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
+router.route('/login').get(async(req, res) => {
+    try {
+    
+    } catch(e) {
+        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
 })
 
-router.route('/edit/:id').get((req, res) => {
-    user.findById(req.params.id, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
-})
+// router.route('/edit/:id').get(async(req, res) => {
+//     try {
+    
+//     } catch(e) {
+
+//     }
+// })
 
 
-router.route('/update/:id').put((req, res, next) => {
-    user.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error);
-            console.log(error)
-        } else {
-            res.json(data)
-            console.log('User updated successfully!')
-        }
-    })
-})
+// router.route('/update/:id').put(async(req, res, next) => {
+//     try {
+    
+//     } catch(e) {
 
-router.route('/delete/:id').delete((req, res, next) => {
-    user.findByIdAndRemove(req.params.id, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json({
-                msg: data
-            })
-        }
-    })
-})
+//     }
+// })
+
+// router.route('/delete/:id').delete(async(req, res, next) => {
+//     try {
+    
+//     } catch(e) {
+
+//     }
+// })
 
 module.exports = router;

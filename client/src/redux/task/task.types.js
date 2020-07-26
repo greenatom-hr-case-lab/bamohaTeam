@@ -1,7 +1,8 @@
 const TaskActionTypes = {
-    ADD_ITEM: 'ADD_ITEM',
-    REMOVE_ITEM: 'REMOVE_ITEM',
-    EDIT_ITEM: 'EDIT_ITEM'
+    ADD_TASK: 'ADD_TASK',
+    REMOVE_TASK: 'REMOVE_TASK',
+    EDIT_TASK: 'EDIT_TASK',
+    GET_TASKS: 'GET_TASKS'
 }
 
 export default TaskActionTypes;

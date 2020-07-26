@@ -4,7 +4,7 @@ import './footer.styles.scss';
 
 const Footer = () => (
     <div className='footer'>
-        <span>©2020 by Bamoha</span>
+        <span>©2020 Bamoha team</span>
     </div>
 )
 

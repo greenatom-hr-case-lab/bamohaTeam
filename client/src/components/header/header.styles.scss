@@ -1,12 +1,50 @@
 .header {
-    
     width: 100%;
     margin: 0 auto; 
-    color: aqua;
-    //opacity: 0.6;
     height: 8%; 
-    background: transparent; 
-    box-sizing: border-box;
-    box-shadow: 0 5px 5px 0 rgba(0,0,0,.4), 0 3px 10px 0 rgba(0,0,0,.4);
-    
-}
+	background-color: rgba(25, 25, 25, 0.7);
+    display: flex;
+    justify-content: space-between;
+
+		.logo-container {
+			color: aqua;
+			height: 100%;
+			width: 70px;
+			padding: 25px;
+			text-decoration: none;
+
+			&:active, &:focus {
+				outline: none;
+			}
+			
+		}
+
+		.navigation {
+			width: 50%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+
+			.nav-option {
+				margin: 0.5rem 0.75rem;
+				cursor: pointer;
+				text-decoration: none;
+				color: aqua;
+
+				&:active, &:focus {
+					outline: none;
+				}
+
+				.profile-pic {
+					border-radius: 50%;
+					margin: 0.3rem;
+				}
+			}
+
+
+		}
+	}
+
+	
+	

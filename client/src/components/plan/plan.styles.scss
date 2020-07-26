@@ -1,3 +1,69 @@
 .plan {
-    border: green 2px;
+    display: flex;
+    color: #fff;
+    position: relative;
+    padding: 0.5rem;
+    max-height: 100%;
+
+    .info, .tasks-and-nav {
+        flex: 50%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin: 0.2rem 0.2rem;
+    }
+
+    .tasks-and-nav {
+        
+        h2 {
+
+        }
+    }
+
+    .info {
+
+        .title, .position, .hr, .boss {
+            width: 90%;
+            resize: none;
+            background: transparent;
+            border: none;
+            color: #fff;
+            margin: 0.3rem 0;
+            height: 1.65rem;
+
+            &::placeholder {
+                color: #fff;
+            }
+
+            &:focus {
+                background: #fff;
+                border: solid 1px aqua;
+                border-radius: 0.45rem;
+                color: #000;
+
+                &::placeholder {
+                    color: #000;
+                }
+            }
+        }
+
+        .position {
+        
+        }
+
+       
+
+        .grade {
+
+        }
+
+        .result {
+
+        }
+    }
+
+    
+
+    .nav {
+        align-items: flex-end;
+    }
 }

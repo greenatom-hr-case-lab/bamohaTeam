@@ -3,17 +3,21 @@ let mongoose = require('mongoose'),
     db = require('../config/_db'),
     User = db.User;
 
- 
+const bcrypt = require('bcrypt');
+
+
 
 async function signIn ({email, password}) {
-    let result = await User.findOne({email});
-   // if (result && password) {
+    let user = await User.findOne({email});
+    if (user && bcrypt.compareSync(password, user.hash))  {
+        const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
         return{
-           //...result.toJSON
-          result
-        }
+            ...user.toJSON(),
+            token
+          //result
+        };
         console.log(result)
-    //}
+    }
 }
 
 async function getAll(){
