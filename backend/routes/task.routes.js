@@ -4,7 +4,7 @@ let mongoose = require('mongoose'),
 
 let task = require('../models/task.schema');
 
-router.route('/create').post(async(req, res, next) => {
+router.route('/createTask').post(async(req, res, next) => {
     try {
         const task = new Task(req.body);
 
@@ -18,7 +18,7 @@ router.route('/create').post(async(req, res, next) => {
     }
 });
 
-router.route('/').get(async(req, res) => {
+router.route('/getTasks').get(async(req, res) => {
     try {
 
     } catch(e) {
@@ -26,7 +26,7 @@ router.route('/').get(async(req, res) => {
     }
 })
 
-router.route('/edit/:id').get(async(req, res) => {
+router.route('/editTask').put(async(req, res) => {
     try {
 
     } catch(e) {
@@ -34,22 +34,13 @@ router.route('/edit/:id').get(async(req, res) => {
     }
 })
 
-router.route('/delete/:id').delete(async(req, res, next) => {
+router.route('/removeTask').delete(async(req, res, next) => {
     try {
 
     } catch(e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
 })
-
-// router.route('/update/:id').put((req, res, next) => {
-    // try {
-
-    // } catch(e) {
-
-    // }
-// })
-
 
 
 module.exports = router;

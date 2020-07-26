@@ -21,8 +21,8 @@
 
     .info {
 
-        .title, .position, .hr, .boss {
-            width: 90%;
+        .position {
+            width: 99%;
             resize: none;
             background: transparent;
             border: none;
@@ -46,24 +46,13 @@
             }
         }
 
-        .position {
-        
-        }
-
-       
-
-        .grade {
-
-        }
-
-        .result {
-
+        .employee, .hr, .boss {
+            height: 2rem;
         }
     }
 
-    
-
-    .nav {
-        align-items: flex-end;
+    .title {
+        margin: 0.7rem 0;
+        text-transform: uppercase;
     }
 }

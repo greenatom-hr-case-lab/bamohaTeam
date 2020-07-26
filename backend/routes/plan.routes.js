@@ -4,7 +4,7 @@ let mongoose = require('mongoose'),
 
 let plan = require('../models/plan.schema');
 
-router.route('/create').post(async(req, res, next) => {
+router.route('/createPlan').post(async(req, res, next) => {
     try {
         const plan = new Plan(req.body);
 
@@ -26,7 +26,7 @@ router.route('/getPlans').get( async (req, res) => {
     }
 })
 
-router.route('/edit/:id').get(async (req, res) => {
+router.route('/editPlan').put(async (req, res) => {
     try {
 
     } catch(e) {
@@ -34,25 +34,12 @@ router.route('/edit/:id').get(async (req, res) => {
     }
 })
 
-
-router.route('/update/:id').put(async(req, res, next) => {
+router.route('/moveStage').put(async (req, res) => {
     try {
 
     } catch(e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
 })
-
-// router.route('/delete/:id').delete((req, res, next) => {
-//     plan.findByIdAndRemove(req.params.id, (error, data) => {
-//         if (error) {
-//             return next(error);
-//         } else {
-//             res.status(200).json({
-//                 msg: data
-//             })
-//         }
-//     })
-// })
 
 module.exports = router;

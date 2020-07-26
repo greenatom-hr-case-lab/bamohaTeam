@@ -4,7 +4,7 @@ let mongoose = require('mongoose'),
 
 let comment = require('../models/comment.schema');
 
-router.route('/create').post(async(req, res, next) => {
+router.route('/createComment').post(async(req, res, next) => {
     try {
         const comment = new Comment(req.body);
 
@@ -18,7 +18,7 @@ router.route('/create').post(async(req, res, next) => {
     }
 });
 
-router.route('/').get(async(req, res) => {
+router.route('/getPlansComments').get(async(req, res) => {
     try {
 
     } catch(e) {
@@ -26,7 +26,7 @@ router.route('/').get(async(req, res) => {
     }
 })
 
-router.route('/delete/:id').delete(async(req, res, next) => {
+router.route('/getTasksComments').get(async(req, res) => {
     try {
 
     } catch(e) {
@@ -34,22 +34,13 @@ router.route('/delete/:id').delete(async(req, res, next) => {
     }
 })
 
-// router.route('/edit/:id').get(async(req, res) => {
-//     try {
+router.route('/deleteComment').delete(async(req, res, next) => {
+    try {
 
-//     } catch(e) {
-
-//     }
-// })
-
-
-// router.route('/update/:id').put(async (req, res, next) => {
-//     try {
-
-//     } catch(e) {
-
-//     }
-// })
+    } catch(e) {
+        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
+})
 
 
 module.exports = router;

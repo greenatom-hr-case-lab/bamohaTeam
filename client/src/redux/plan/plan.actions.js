@@ -3,10 +3,10 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:9000/plans';
 
-export const createPlan = ({ employee, boss, hr, position, created_at, 
+export const createPlan = async ({ employee, boss, hr, position, created_at, 
                                 start_date, end_date, stage, grade, result }) => {
     return (dispatch) => {
-      return axios.post(`${apiUrl}/create`, {employee, boss, hr, position, created_at, 
+      return axios.post(`${apiUrl}/createPlan`, {employee, boss, hr, position, created_at, 
                                                 start_date, end_date, stage, grade, result})
         .then(response => {
           dispatch(createPostSuccess(response.data))
@@ -17,9 +17,9 @@ export const createPlan = ({ employee, boss, hr, position, created_at,
     };
   };
   
-  export const createPlanSuccess = (data) => {
+  export const createPlanSuccess = async (data) => {
     return {
-      type: PlanActionTypes.ADD_ITEM,
+      type: PlanActionTypes.ADD_PLAN,
       payload: {
         _id: data._id,
         employee: data.employee,
@@ -37,8 +37,8 @@ export const createPlan = ({ employee, boss, hr, position, created_at,
   };
   
 
-  export const getUsersPlans = (_id) => {
-    const request = axios.get(`/getPlans?id=${_id}`)
+  export const getUsersPlans = async (_id) => {
+    const request = axios.get(`${apiUrl}/getPlans?id=${_id}`)
       .then(response => {
 
 
@@ -50,3 +50,32 @@ export const createPlan = ({ employee, boss, hr, position, created_at,
       payload: request
     }
   };
+
+
+  export const editPlan = async (_id) => {
+    const request = axios.put(`${apiUrl}/editPlan&id=${_id}`)
+      .then(response => {
+
+
+        return response.data;
+      })
+
+      return {
+        type: PlanActionTypes.EDIT_PLAN,
+        payload: request
+      }
+  };
+
+  export const moveStage = async (_id) => {
+    const request = axios.put(`${apiUrl}/moveStage&id=${_id}`)
+      .then(response => {
+
+
+        return response.data;
+      })
+
+      return {
+        type: PlanActionTypes.MOVE_STAGE,
+        payload: request
+      }
+  }
