@@ -50,6 +50,11 @@ class App extends React.Component {
             Редирект со страницы регистрации, если юзер уже залогинился
           */}
 
+          {/* 
+            Если роль employee, то рендерим страничку ShowPlanPage и не пускаем на остальные
+            Если роль hr или boss, то рендерим HomePage и не пускаем только на ShowPlanPage
+          */}
+
           <Route excat path='/register' component={RegistrationPage} />
           <Route exact path='/plans' component={HomePage} />
           <Route exact path='/plan/:id' component={ShowPlanPage} />
