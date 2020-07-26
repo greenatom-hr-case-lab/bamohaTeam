@@ -1,7 +1,7 @@
 const CommentActionTypes = {
-    ADD_ITEM: 'ADD_ITEM',
-    REMOVE_ITEM: 'REMOVE_ITEM',
-    EDIT_ITEM: 'EDIT_ITEM'
+    ADD_COMMENT: 'ADD_COMMENT',
+    REMOVE_COMMENT: 'REMOVE_COMMENT',
+    GET_COMMENTS: 'GET_COMMENTS'
 }
 
 export default CommentActionTypes;
