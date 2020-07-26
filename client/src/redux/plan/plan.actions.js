@@ -36,42 +36,17 @@ export const createPlan = ({ employee, boss, hr, position, created_at,
     }
   };
   
-  export const deletePlanSuccess = id => {
+
+  export const getUsersPlans = (_id) => {
+    const request = axios.get(`/getPlans?id=${_id}`)
+      .then(response => {
+
+
+        return response.data;
+      })
+    
     return {
-      type: PlanActionTypes.DELETE_ITEM,
-      payload: {
-        id
-      }
+      type: PlanActionTypes.GET_PLANS,
+      payload: request
     }
-  }
-  
-  export const deletePlan = id => {
-    return (dispatch) => {
-      return axios.get(`${apiUrl}/delete/${id}`)
-        .then(response => {
-          dispatch(deletePlanSuccess(response.data))
-        })
-        .catch(error => {
-          throw(error);
-        });
-    };
-  };
-  
-  export const fetchPlans = (plans) => {
-    return {
-      type: PlanActionTypes.FETCH_PLANS,
-      plans
-    }
-  };
-  
-  export const fetchAllPosts = () => {
-    return (dispatch) => {
-      return axios.get(apiUrl)
-        .then(response => {
-          dispatch(fetchPlans(response.data))
-        })
-        .catch(error => {
-          throw(error);
-        });
-    };
   };

@@ -15,7 +15,8 @@ let userSchema = new Schema({
             },
             message: props => `${props.value} is not a valid email!`
           },
-          required: true
+          required: true,
+          unique: true
           
     },
     password: { 
@@ -25,6 +26,7 @@ let userSchema = new Schema({
     role: {
         type: String,
         enum: ['hr', 'boss', 'employee'],
+        default: 'employee',
         required: true
     },
     plans: [{

@@ -4,62 +4,52 @@ let mongoose = require('mongoose'),
 
 let comment = require('../models/comment.schema');
 
-router.route('/create').post((req, res, next) => {
-    comment.create(req.body, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            console.log(data)
-            res.json(data)
-        }
-    })
+router.route('/create').post(async(req, res, next) => {
+    try {
+        const comment = new Comment(req.body);
+
+        await comment.save((err) => {
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({ success: true })
+        })
+
+    } catch(e) {
+        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
 });
 
-router.route('/').get((req, res) => {
-    comment.find((error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
+router.route('/').get(async(req, res) => {
+    try {
+
+    } catch(e) {
+        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
 })
 
-router.route('/edit/:id').get((req, res) => {
-    comment.findById(req.params.id, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
+router.route('/delete/:id').delete(async(req, res, next) => {
+    try {
+
+    } catch(e) {
+        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
 })
 
+// router.route('/edit/:id').get(async(req, res) => {
+//     try {
 
-router.route('/update/:id').put((req, res, next) => {
-    comment.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error);
-            console.log(error)
-        } else {
-            res.json(data)
-            console.log('Comment updated successfully!')
-        }
-    })
-})
+//     } catch(e) {
 
-router.route('/delete/:id').delete((req, res, next) => {
-    comment.findByIdAndRemove(req.params.id, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json({
-                msg: data
-            })
-        }
-    })
-})
+//     }
+// })
+
+
+// router.route('/update/:id').put(async (req, res, next) => {
+//     try {
+
+//     } catch(e) {
+
+//     }
+// })
+
 
 module.exports = router;
