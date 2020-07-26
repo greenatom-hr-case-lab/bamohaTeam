@@ -1,7 +1,6 @@
-.task-collection {
+.comments-form {
 
-
-    .new-task {
+    .comment-text {
         width: 80%;
         resize: none;
         background: rgba($color: #e8ebea67, $alpha: 1.0);
@@ -10,7 +9,7 @@
         color: #fff;
         margin: 0.3rem 0;
         height: 2rem;
-
+    
         &:focus {
             background: #fff;
             border: solid 1px aqua;
@@ -18,7 +17,7 @@
         }
     }
 
-    .task-button {
+    .comment-button {
         width: 15%;
         margin: 0.3rem 0 0 1rem;
         border-radius: 0.45rem;
@@ -32,4 +31,5 @@
             
         }
     }
+    
 }
