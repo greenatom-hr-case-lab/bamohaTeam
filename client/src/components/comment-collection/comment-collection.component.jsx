@@ -1,12 +1,13 @@
 import React from 'react';
 
 import CommentItem from '../comment-item/comment-item.component';
+import CommentsForm from '../comments-form/comments-form.component';
 
 import './comment-collection.styles.scss';
 
 const CommentCollection = () => (
     <div className='comment-collection'>
-        <textarea className='comment-form' placeholder='Комментарий'></textarea>
+        <CommentsForm />
         <CommentItem />
         <CommentItem />
     </div>
