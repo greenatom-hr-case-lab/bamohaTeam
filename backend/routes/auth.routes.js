@@ -1,7 +1,7 @@
 let mongoose = require('mongoose'),
     express = require('express'),
     router = express.Router();
-    authService = require("../services/auth.service")
+    authService = require("../services/user.service")
 
 let user = require('../models/user.schema');
 

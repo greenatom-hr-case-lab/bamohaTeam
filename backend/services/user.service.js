@@ -7,12 +7,13 @@ let mongoose = require('mongoose'),
 
 async function signIn ({email, password}) {
     let result = await User.findOne({email});
-    //if (user && password) {
+   // if (result && password) {
         return{
            //...result.toJSON
-           result
+          result
         }
-   // }
+        console.log(result)
+    //}
 }
 
 async function getAll(){
