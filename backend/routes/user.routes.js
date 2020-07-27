@@ -20,29 +20,5 @@ router.route('/login').get(async(req, res) => {
     }
 })
 
-// router.route('/edit/:id').get(async(req, res) => {
-//     try {
-    
-//     } catch(e) {
-
-//     }
-// })
-
-
-// router.route('/update/:id').put(async(req, res, next) => {
-//     try {
-    
-//     } catch(e) {
-
-//     }
-// })
-
-// router.route('/delete/:id').delete(async(req, res, next) => {
-//     try {
-    
-//     } catch(e) {
-
-//     }
-// })
 
 module.exports = router;

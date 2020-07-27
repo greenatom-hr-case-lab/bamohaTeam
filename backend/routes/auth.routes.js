@@ -3,14 +3,25 @@ let mongoose = require('mongoose'),
     router = express.Router();
     authService = require("../services/user.service")
 
-let user = require('../models/user.schema');
+const User = require('../models/user.schema');
+const bcrypt = require('bcrypt');
+const { use } = require('bcrypt/promises');
 
 router.get('/login', function(req, res, next){
-    authService.signIn(req.body)
-    .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
-    .catch(err => next(err));
+
+    let user = User.findOne({email: req.body.email}, (err, user) => {
+        if(!user)
+         return res.json({ loginSuccess: false, message: "Auth failed, email not found"});
+  
+        user.comparePassword(req.body.password, (err, isMatch) => {
+         if (!isMatch)
+         console.log("im here")
+         return res.json({ loginSuccess: false, message: "Wrong password" });
+        });
+
     console.log(req.body)
     console.log(res.body)
+    })
 })
 
 router.get('/find', function(req, res, next){
@@ -20,4 +31,31 @@ router.get('/find', function(req, res, next){
     console.log(res.body)
 })
 
-module.exports = router
+router.get('/register', function(req, res, next){
+    console.log(req.body)
+    const user = new User(req.body);
+    
+    user.save((err) => {
+        if (err) return res.json({ success: false, err }); 
+        return res.status(200).json({ success: true })
+    })
+
+    /*const user1 = new User(
+        {
+           //_id: new mongoose.Types.ObjectId(),
+           name: 'Oleg',
+            email:'oleg@mail.ru',
+            password:'pswd',
+            role: 'employee'           
+        }
+    )
+
+    user1.save(function(err) {
+        if (err) throw err;
+         
+        console.log('user successfully saved.');
+    })*/
+    console.log(res.body)
+})
+
+module.exports = router;
