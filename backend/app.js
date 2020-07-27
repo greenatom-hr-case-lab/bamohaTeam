@@ -48,6 +48,8 @@ app.use('/test', function (req, res, next) {
 
 module.exports = app;
 
+
+
 // Поключение к базе данных
 /*mongoose.connect(config.db, {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -60,6 +62,7 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (err) => {
   console.log("Failed to connect, error: " + err);
 });*/
+
 
 
 // catch 404 and forward to error handler

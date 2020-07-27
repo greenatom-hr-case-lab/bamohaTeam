@@ -1,6 +1,6 @@
 let mongoose = require('mongoose'),
     //user = require("../models/user.schema"),
-    db = require('../config/_db'),
+    db = require('../helpers/_db'),
     User = db.User;
 
 const bcrypt = require('bcrypt');
@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt');
 async function signIn ({email, password}) {
     let user = await User.findOne({email});
     if (user && bcrypt.compareSync(password, user.hash))  {
-        const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
+       const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
         return{
             ...user.toJSON(),
             token
@@ -21,7 +21,7 @@ async function signIn ({email, password}) {
 }
 
 async function getAll(){
-    //const userResponse = await user.find();
+    const user = await User.find();
     return await User.find()
 }
 
