@@ -2,7 +2,19 @@ let mongoose = require('mongoose'),
     express = require('express'),
     router = express.Router();
 
-let task = require('../models/task.schema');
+let Task = require('../models/task.schema');
+
+router.get("/", async (req, res) => {
+    try {
+        const tasks = await Task.find({});
+        res.send(tasks);
+        
+    } catch (e) {
+        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
+
+  });
+
 
 router.route('/createTask').post(async(req, res, next) => {
     try {

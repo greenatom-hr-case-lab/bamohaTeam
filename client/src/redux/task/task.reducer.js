@@ -1,7 +1,7 @@
 import TaskActionTypes from './task.types';
 
 const INITIAL_STATE = {
-    
+    tasks: []
 }
 
 const taskReducer = (state = INITIAL_STATE, action) => {

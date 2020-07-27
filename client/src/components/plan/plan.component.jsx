@@ -2,7 +2,6 @@ import React from 'react';
 
 import TaskCollection from '../task-collection/task-collection.component';
 import CommentCollection from '../../components/comment-collection/comment-collection.component';
-import CustomButton from '../../components/custom-button/custom-button.component';
 
 import Dropdown from 'react-dropdown';
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
@@ -22,8 +21,16 @@ const Plan = (props) => {
     'Max', 'De La Floer'
   ]
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+ 
+  }
+
+
+
     return(
-      <form className='plan'>
+      <form className='plan' onSubmit={onSubmit}>
         <div className='info'>
 
           <p className='title'>Сотрудник</p>
