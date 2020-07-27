@@ -42,7 +42,7 @@ app.use('/comments', commentRoute);
 module.exports = app;
 
 // Поключение к базе данных
-mongoose.connect(config.db, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(config.db, {useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true});
 
 // Обработчики подключения
 mongoose.connection.on("connected", () => {
@@ -52,9 +52,6 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (err) => {
   console.log("Failed to connect, error: " + err);
 });
-
-
-
 
 
 // catch 404 and forward to error handler

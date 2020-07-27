@@ -1,25 +1,27 @@
 import PlanActionTypes from './plan.types';
 
 const INITIAL_STATE = {
-    
+    plans: []
 }
 
 const planReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case PlanActionTypes.ADD_ITEM:
-            return [
-                ...state,
-                action.payload
-            ]
-        case PlanActionTypes.DELETE_ITEM:
-            return state.filter(plan => plan._id !== action.payload.id);
-        case PlanActionTypes.EDIT_ITEM:
+
+        case PlanActionTypes.ADD_PLAN:
             return {
                 ...state,
-                
+                plans: [...state.plans, action.payload]
+            }            
+
+        case PlanActionTypes.EDIT_PLAN:
+            return {
+                ...state,
+                 
             }
-        case PlanActionTypes.FETCH_PLANS:
+
+        case PlanActionTypes.GET_PLANS:
             return action.plans;
+
         case PlanActionTypes.MOVE_STAGE:
             return {
                 ...state,

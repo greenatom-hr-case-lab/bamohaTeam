@@ -16,8 +16,8 @@ export const createPlan = async ({ employee, boss, hr, position, created_at,
         });
     };
   };
-  
-  export const createPlanSuccess = async (data) => {
+   
+  export const createPlan = async (data) => {
     return {
       type: PlanActionTypes.ADD_PLAN,
       payload: {
@@ -34,13 +34,15 @@ export const createPlan = async ({ employee, boss, hr, position, created_at,
         result: data.result
       }
     }
+
+    
   };
   
 
   export const getUsersPlans = async (_id) => {
-    const request = axios.get(`${apiUrl}/getPlans?id=${_id}`)
+    const request = axios.get(`${apiUrl}/getPlans`)
       .then(response => {
-
+        console.log(response);
 
         return response.data;
       })

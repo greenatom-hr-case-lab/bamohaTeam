@@ -2,7 +2,19 @@ let mongoose = require('mongoose'),
     express = require('express'),
     router = express.Router();
 
-let comment = require('../models/comment.schema');
+let Comment = require('../models/comment.schema');
+
+router.get("/", async (req, res) => {
+    try {
+        const comments = await Comment.find({});
+        res.send(comments);
+        
+    } catch (e) {
+        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
+
+  });
+
 
 router.route('/createComment').post(async(req, res, next) => {
     try {

@@ -1,26 +1,41 @@
 let mongoose = require('mongoose'),
     express = require('express'),
     router = express.Router();
+ 
+let Plan = require('../models/plan.schema');
 
-let plan = require('../models/plan.schema');
-
-router.route('/createPlan').post(async(req, res, next) => {
+router.get("/", async (req, res) => {
     try {
-        const plan = new Plan(req.body);
-
-        await product.save((err) => {
-            if (err) return res.status(400).json({ success: false, err })
-            return res.status(200).json({ success: true })
-        })
-
-    } catch(e) {
+        const plans = await Plan.find({});
+        res.send(plans);
+        
+    } catch (e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
 });
 
+router.route('/createPlan').post(async(req, res, next) => {
+    const newPlan = new Plan({
+        employee: req.body.employee,
+        boss: req.body.boss,
+        hr: req.user._id,
+        position: req.body.position,
+        created_at: req.body.created_at,
+        start_date: req.body.start_date,
+        end_date: req.body.end_date,
+        stage: req.body.stage,
+        grade: req.body.grade,
+        result: req.body.result,
+        });
+    const newPlanCreated = await newPlan.save();
+    res.status(201).send({ message: "Новый план добавлен", data: newOrderCreated });
+
+});
+
 router.route('/getPlans').get( async (req, res) => {
     try {
-
+        const plans = await User.findOne({ _id: req.params.id }).children;
+        res.send(plans);
     } catch(e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
