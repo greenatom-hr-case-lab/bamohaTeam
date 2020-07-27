@@ -23,19 +23,17 @@ const Plan = (props) => {
   ]
 
     return(
-      <div className='plan'>
+      <form className='plan'>
         <div className='info'>
-         {/* <textarea className='title' placeholder='Имя Фамилия Отчество'></textarea>*/} 
+
           <p className='title'>Сотрудник</p>
           <Dropdown controlClassName='employee' options={employeeOptions}  value={employeeOptions} placeholder="Выберите сотрудника" />
           
           <textarea className='position' placeholder='Укажите должность'></textarea>
 
-          {/* <textarea className='hr' placeholder='Кадровый сотрудник'></textarea> */}
           <p className='title'>Сотрудник отдела кадров</p>
           <Dropdown controlClassName='hr' options={hrOptions}  value={hrOptions} placeholder="Выберите сотрудника отдела кадров" />
 
-          {/* <textarea className='boss' placeholder='Руководитель'></textarea> */}
           <p className='title'>Руководитель</p>
           <Dropdown controlClassName='boss' options={bossOptions}  value={bossOptions} placeholder="Выберите руководителя" />
 
@@ -60,13 +58,14 @@ const Plan = (props) => {
 
           <div className='tasks-and-nav'>
             <div className='nav'>
-              <CustomButton text='Скачать в PDF'/>
-              <CustomButton text='Передвинуть на следующий этап'/>
+              <button className='form-button'>Сохранить план</button>
+              <button className='form-button'>Скачать в PDF</button>
+              <button className='form-button'>Передвинуть на следующий этап</button>
             </div>
               <p className='title'>Задачи</p>
               <TaskCollection />
           </div>
-      </div>
+      </form>
     );
 }
 

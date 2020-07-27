@@ -1,9 +1,7 @@
 import React from 'react';
 import './sign-in-form.styles.scss';
 
-import CustomButton from '../custom-button/custom-button.component';
 import InputField from '../input-field/input-field.component';
-import Logo from '../logo/logo.component';
 
 class SignInForm extends React.Component {
     constructor(props) {
@@ -37,9 +35,9 @@ class SignInForm extends React.Component {
 
     render() {
         return (
-            <div className='sign-in'>
-                <h2>Register:</h2>
-                <span>Sign in using email and password</span>
+            <div className='sign-in-form'>
+                <h2 className='title'>Вход</h2>
+                <span className='subtitle'>Войдите с помощью своего email и пароля</span>
 
                 <form onSubmit={this.handleSubmit}>
                     <InputField 
@@ -47,33 +45,21 @@ class SignInForm extends React.Component {
                         type="email" 
                         value={this.state.email} 
                         handleChange={this.handleChange}
-                        //label='Email'
-                        placeholder="Your email"
+                        label='Email'
                         required/>
                     <InputField 
                         name="password" 
                         type="password" 
                         value={this.state.password} 
                         handleChange={this.handleChange} 
-                        //label='Password'
-                        placeholder="Your password"
+                        label='Пароль'
                         required/>
-                    <div className='buttons'>
-                        <CustomButton type="submit">Sign in</CustomButton>
-                        <CustomButton type="submit">Sign up</CustomButton>
-                    </div>
+                    <button className='form-button' type="submit">Войти</button>
                 </form>
             </div>
         );
     }
 }
 
-
-
-/*const SignInForm = () => (
-    <div className='sign-in-form'>
-        
-    </div>
-)*/
 
 export default SignInForm;
