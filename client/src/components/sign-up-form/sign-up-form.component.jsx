@@ -1,9 +1,7 @@
 import React from 'react';
 import './sign-up-form.styles.scss';
 
-import CustomButton from '../custom-button/custom-button.component';
 import InputField from '../input-field/input-field.component';
-import Logo from '../logo/logo.component';
 
 class SignUpForm extends React.Component {
     constructor(props) {
@@ -23,7 +21,7 @@ class SignUpForm extends React.Component {
         const {displayName, email, password, confirmPassword} = this.state;
 
         if (password !== confirmPassword) {
-            alert('Passwords don\'t match');
+            alert('Пароли не совпадают');
             return;
         }
 
@@ -52,18 +50,17 @@ class SignUpForm extends React.Component {
     render() {
         const {displayName, email, password, confirmPassword} = this.state;
         return (
-            <div className='sign-up'>
-                <h2 className='title'>Register:</h2>
-                <span className='subtitle'>Sign up using email and password</span>
+            <div className='sign-up-form'>
+                <h2 className='title'>Регистрация</h2>
+                <span className='subtitle'>Создайте аккаунт</span>
 
-                <form className='sign-in-form' onClick={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <InputField 
                         type='text'
                         name='displayName'
                         value={displayName}
                         onChange={this.handleChange}
-                        //label='Display Name'
-                        placeholder="Your name"
+                        label='Фамилия Имя Отчество'
                         required
                     />
                     <InputField 
@@ -71,8 +68,7 @@ class SignUpForm extends React.Component {
                         name='email'
                         value={email}
                         onChange={this.handleChange}
-                        //label='Email'
-                        placeholder="Your email"
+                        label='Email'
                         required
                     />
                     <InputField 
@@ -80,8 +76,7 @@ class SignUpForm extends React.Component {
                         name='password'
                         value={password}
                         onChange={this.handleChange}
-                        //label='Password'
-                        placeholder="Your password"
+                        label='Пароль'
                         required
                     />
                     <InputField 
@@ -89,12 +84,10 @@ class SignUpForm extends React.Component {
                         name='confirmPassword'
                         value={confirmPassword}
                         onChange={this.handleChange}
-                        //label='Confirm password'
-                        placeholder="Your confirm password"
+                        label='Подтвердите пароль'
                         required
                     />
-                    <CustomButton type='submit'>SIGN UP</CustomButton>
-                    <CustomButton type='submit'>SIGN IN</CustomButton>
+                    <button className='form-button' type='submit'>Создать аккаунт</button>
                 </form>
             </div>
         )
@@ -102,11 +95,5 @@ class SignUpForm extends React.Component {
 
 }
 
-
-/*const SignUpForm = () => (
-    <div className='sign-up-form'>
-        
-    </div>
-)*/
 
 export default SignUpForm;
