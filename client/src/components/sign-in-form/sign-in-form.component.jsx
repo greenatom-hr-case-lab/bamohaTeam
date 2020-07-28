@@ -5,7 +5,7 @@ import './sign-in-form.styles.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import {connect} from 'react-redux';
 import InputField from '../input-field/input-field.component';
-
+//import { userActions } from '../../redux/user/user.actions';
 
 //const dispatch = useDispatch()
 
@@ -17,6 +17,9 @@ class SignInForm extends React.Component {
             email: '',
             password: ''
         }
+        //const dispatch = useDispatch()
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
  
@@ -24,21 +27,16 @@ class SignInForm extends React.Component {
         event.preventDefault();
 
         const {email, password} = this.state;
-
-        loginUser(email,password)
-            //.then(response => { console.log("success")
-              //if (response.payload.loginSuccess) {
-                //window.localStorage.setItem('userId', response.payload.userId);
-               // props.history.push("/");
-              
-        this.setState({email: '', password: ''});
-        //}) 
+        
+        if (email && password) {
+            console.log(email,password)
+            this.props.loginUser(email, password);
+        }
      }
         
 
     handleChange = event => {
         const {value, name} = event.target;
-
         this.setState({[name]: value})
     }
 
@@ -71,6 +69,8 @@ class SignInForm extends React.Component {
 
  
       render() {
+       // const { loggingIn } = this.props;
+        const {email, password} = this.state;
         return (           
 
             <div className='sign-in-form'>
@@ -81,15 +81,15 @@ class SignInForm extends React.Component {
                     <InputField 
                         name="email" 
                         type="email" 
-                        value={this.state.email}
-                        handleChange={this.handleChange}
+                        value={email}
+                        onChange={this.handleChange}
                         label='Email'
                         required/>
                     <InputField 
                         name="password" 
                         type="password" 
-                        value={this.state.password} 
-                        handleChange={this.handleChange}
+                        value={password} 
+                        onChange={this.handleChange}
                         label='Пароль'
                         required/>
                     <button className='form-button' type="submit">Войти</button>
@@ -97,7 +97,10 @@ class SignInForm extends React.Component {
             </div>
         );
       }
+
 }
 
-
-export default SignInForm;
+const actionsCr = {
+    loginUser: loginUser 
+}
+export default connect(null, actionsCr)(SignInForm);

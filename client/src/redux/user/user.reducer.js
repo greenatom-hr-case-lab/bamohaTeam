@@ -16,12 +16,12 @@ const INITIAL_STATE = {
     }
 }*/
 
-export default function (state = {}, action) {
+export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case UserActionTypes.REGISTER_USER:
             return { ...state, register: action.payload }
         case UserActionTypes.LOGIN_USER:
-            return { ...state, loginSucces: action.payload }
+            return { ...state, user: action.payload }
         case UserActionTypes.AUTH_USER:
             return { ...state, userData: action.payload }
         case UserActionTypes.LOGOUT_USER:

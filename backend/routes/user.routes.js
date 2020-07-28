@@ -10,14 +10,10 @@ const { use } = require('bcrypt/promises');
 router.get("/auth", (req, res) => {
     res.status(200).json({
         _id: req.user._id,
-        //isAdmin: req.user.role === 0 ? false : true,
         isAuth: true,
         email: req.user.email,
         name: req.user.name,
-        //lastname: req.user.lastname,
         role: req.user.role,
-        //image: req.user.image,
-        //cart: req.user.cart,
         history: req.user.history,
         plans: req.user.plans
     });
@@ -43,16 +39,16 @@ router.route('/create').post( async (req, res, next) => {
 });
 
 router.post('/login', function(req, res, next){
-
     let user = User.findOne({email: req.body.email}, (err, user) => {
-        if(!user)
-         return res.json({ loginSuccess: false, message: "Auth failed, email not found"});
+        if(!user){
+         console.log(req.body) 
+         return res.json({ loginSuccess: false, message: "Auth failed, email not found"})};
         //если да то да, если нет, то нет(тернарненько)
         user.comparePassword(req.body.password, (err, isMatch) => {
          !isMatch ?
          ( res.json({ loginSuccess: false, message: "Wrong password" }))
          :
-         ( res.json({user}));
+         ( res.json({ ...user.toJSON() }));
         });
 
 
