@@ -8,9 +8,8 @@ const bcrypt = require('bcrypt');
 const { use } = require('bcrypt/promises');
 
 router.get('/login', function(req, res, next){
-    console.log(req.body)
     let user = User.findOne({email: req.body.email}, (err, user) => {
-        
+                
         if(!user)
          return res.json({ loginSuccess: false, message: "Auth failed, email not found"});
   

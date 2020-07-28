@@ -4,8 +4,8 @@ import axios from 'axios';
 const apiUrl = 'http://localhost:9000/users';
 
 
- export function  loginUser(email, password) {
-    const request = axios.post(`${apiUrl}/login`, (email, password))
+ export function  loginUser(dataToSubmit) {
+    const request = axios.post(`${apiUrl}/login`, (dataToSubmit))
     .then(response => response.data)
 
     return {
