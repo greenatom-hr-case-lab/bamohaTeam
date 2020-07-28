@@ -30,7 +30,7 @@ let userSchema = new Schema({
         type: String,
         enum: ['hr', 'boss', 'employee'],
         default: 'employee',
-        required: true
+        required: false
     },
     plans: [{
         type: mongoose.Schema.Types.ObjectId, 
@@ -50,7 +50,7 @@ userSchema.set('toJSON', {
 });
 
 userSchema.pre('save', async function (next) {
-    var user = this;
+    let user = this;
 
     if (user.isModified('password')) {
         console.log('password was changed')
@@ -60,6 +60,7 @@ userSchema.pre('save', async function (next) {
            bcrypt.hash(user.password, salt, function (err, hash) {
                 if (err) return next(err);
                 user.password = hash
+                console.log('password was hashed', user.password )
                 next()
             })
         })

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { withRouter } from "react-router-dom";
 import { loginUser } from "../../redux/user/user.actions";
 import './sign-in-form.styles.scss';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
 import {connect} from 'react-redux';
 import InputField from '../input-field/input-field.component';
-//import { userActions } from '../../redux/user/user.actions';
 
 //const dispatch = useDispatch()
 
@@ -39,34 +37,6 @@ class SignInForm extends React.Component {
         const {value, name} = event.target;
         this.setState({[name]: value})
     }
-
-    // /*submitHandler =  (values, { setSubmitting }) => {
-    //     setTimeout(() => {
-    //       let dataToSubmit = {
-    //         email: values.email,
-    //         password: values.password
-    //       };
-
-    //       dispatch(loginUser(dataToSubmit))
-    //         .then(response => {
-    //           if (response.payload.loginSuccess) {
-    //             window.localStorage.setItem('userId', response.payload.userId);
-    //             props.history.push("/");
-    //           } /*else {
-    //             setFormErrorMessage('Check out your Account or Password again')
-    //           }*/
-    //         })
-    //         .catch(err => {
-    //           //setFormErrorMessage('Check out your Account or Password again')
-    //           setTimeout(() => {
-    //            // setFormErrorMessage("")
-    //           }, 3000);
-    //         });
-    //       setSubmitting(false);
-    //     }, 500);
-    //   }
-
-
  
       render() {
        // const { loggingIn } = this.props;
@@ -103,4 +73,5 @@ class SignInForm extends React.Component {
 const actionsCr = {
     loginUser: loginUser 
 }
+
 export default connect(null, actionsCr)(SignInForm);

@@ -70,7 +70,7 @@ router.post('/register', function(req, res, next){
     
     user.save((err) => {
         if (err) return res.json({ success: false, err }); 
-        return res.status(200).json({ success: true })
+        return res.status(200).json({ ...user.toJSON() })
     })
 
     console.log(res.body)
