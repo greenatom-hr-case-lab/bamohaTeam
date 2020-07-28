@@ -26,14 +26,9 @@ let planSchema = new Schema({
     start_date: { type: Date, default: Date.now },
     end_date: Date,
     stage: {
-        type: String,
-        enum: [ 'Plan_creation',
-                'Employee_fill_up',
-                'Boss_check',
-                'In_progress',
-                'Boss_evaluation',
-                'Evaluation_complete'],
-        default: 'Plan_creation',
+        type: Number,
+        enum: [1, 2, 3, 4, 5, 6],
+        default: '1',
         required: true
     },
     grade: {
@@ -55,5 +50,5 @@ let planSchema = new Schema({
 }, {
     collection: 'plans'
 });
-
+ 
 module.exports = mongoose.model('Plan', planSchema)

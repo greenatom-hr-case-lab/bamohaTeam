@@ -8,14 +8,14 @@ const bcrypt = require('bcrypt');
 const { use } = require('bcrypt/promises');
 
 router.get('/login', function(req, res, next){
-
+    console.log(req.body)
     let user = User.findOne({email: req.body.email}, (err, user) => {
+        
         if(!user)
          return res.json({ loginSuccess: false, message: "Auth failed, email not found"});
   
         user.comparePassword(req.body.password, (err, isMatch) => {
          if (!isMatch)
-         console.log("im here")
          return res.json({ loginSuccess: false, message: "Wrong password" });
         });
 
@@ -40,21 +40,6 @@ router.get('/register', function(req, res, next){
         return res.status(200).json({ success: true })
     })
 
-    /*const user1 = new User(
-        {
-           //_id: new mongoose.Types.ObjectId(),
-           name: 'Oleg',
-            email:'oleg@mail.ru',
-            password:'pswd',
-            role: 'employee'           
-        }
-    )
-
-    user1.save(function(err) {
-        if (err) throw err;
-         
-        console.log('user successfully saved.');
-    })*/
     console.log(res.body)
 })
 

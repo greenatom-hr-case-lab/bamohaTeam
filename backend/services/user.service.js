@@ -10,6 +10,7 @@ const { use } = require('bcrypt/promises');
 
 async function signIn ({email, password}) {
     let user = await User.findOne({email});
+    
         if(!user)
             return({ loginSuccess: false, message: "Auth failed, email not found"});
     user.comparePassword(password, (err, isMatch) => {

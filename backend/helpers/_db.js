@@ -15,7 +15,10 @@ mongoose.connection.on("error", (err) => {
 });
 
 module.exports = {
-    User: require('../models/user.schema')
+    User: require('../models/user.schema'),
+    Plan: require('../models/plan.schema'),
+    Task: require('../models/task.schema'),
+    Comment: require('../models/comment.schema')
 };
 
 process.on('uncaughtException', function (err) {

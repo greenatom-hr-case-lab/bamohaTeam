@@ -4,10 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-const { Mongoose } = require('mongoose');
 
-const config = require("./config/config");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const userRoute = require('./routes/user.routes');
@@ -41,12 +38,13 @@ app.use('/tasks', taskRoute);
 app.use('/comments', commentRoute);
 app.use('/authentification', authRoute)
 
-app.use('/test', function (req, res, next) {
-  console.log('Request Type:', req.method);
+/*app.use('/test', function (req, res, next) {
+  console.log('Request Type:', req.method, 'req: ', req.body);
   next();
-});
+});*/
 
 module.exports = app;
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

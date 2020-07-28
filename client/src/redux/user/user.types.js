@@ -1,5 +1,8 @@
 const UserActionTypes = {
-    SET_CURRENT_USER: 'SET_CURRENT_USER'
+    LOGIN_USER : 'LOGIN_USER',
+    REGISTER_USER : 'REGISTER_USER',
+    AUTH_USER : 'AUTH_USER',
+    LOGOUT_USER : 'LOGOUT_USER'
 }
 
 export default UserActionTypes;

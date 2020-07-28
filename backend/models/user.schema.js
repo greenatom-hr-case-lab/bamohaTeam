@@ -24,7 +24,7 @@ let userSchema = new Schema({
     password: { 
         type: String, 
         required: true,
-        select: true 
+        select: true
     },
     role: {
         type: String,
@@ -49,7 +49,7 @@ userSchema.set('toJSON', {
     }
 });
 
-userSchema.pre('save', function (next) {
+userSchema.pre('save', async function (next) {
     var user = this;
 
     if (user.isModified('password')) {
@@ -57,7 +57,7 @@ userSchema.pre('save', function (next) {
         bcrypt.genSalt(saltRounds, function (err, salt) {
             if (err) return next(err);
 
-            bcrypt.hash(user.password, salt, function (err, hash) {
+           bcrypt.hash(user.password, salt, function (err, hash) {
                 if (err) return next(err);
                 user.password = hash
                 next()
@@ -68,13 +68,13 @@ userSchema.pre('save', function (next) {
     }
 });
 
-userSchema.methods.comparePassword = function (plainPassword, cb) {
-
-    console.log("1", plainPassword, this.password)
-    bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
-        console.log("2", plainPassword, this.password)
-        if (err) return cb(err);
-        cb(null, isMatch)
+userSchema.methods.comparePassword = async function (plainPassword, cb) {
+    //console.log("1", plainPassword, this.password)
+password = this.password
+  await bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
+       console.log("2", plainPassword, this.password, isMatch)
+       if (err) return cb(err);
+       cb(null, isMatch)
     })
   
 }

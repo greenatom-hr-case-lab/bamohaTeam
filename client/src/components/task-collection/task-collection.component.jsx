@@ -4,7 +4,16 @@ import TaskItem from '../task-item/task-item.component';
 
 import './task-collection.styles.scss';
 
-const TaskCollection = () => {
+const TaskCollection = (props) => {
+
+    {/* 
+        const {tasks} = 
+
+        tasks
+            .map((task) => (
+                <TaskItem key={task.id} task={task} />
+            ))
+    */}
 
     return(
         <div className='task-collection'>
@@ -13,7 +22,7 @@ const TaskCollection = () => {
                 <button className='task-button'>Добавить</button>
             </form>
 
-            <TaskItem />
+           <TaskItem />
             <TaskItem />
         </div>
     )

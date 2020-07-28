@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './comment-form.styles.scss';
+import './comments-form.styles.scss';
 
 const CommentsForm = () => (
     <div className='comments-form'>
