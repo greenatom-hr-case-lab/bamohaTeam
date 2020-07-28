@@ -47,7 +47,7 @@ router.post('/login', function(req, res, next){
     let user = User.findOne({email: req.body.email}, (err, user) => {
         if(!user)
          return res.json({ loginSuccess: false, message: "Auth failed, email not found"});
-        //если да то да, если нет, то нет
+        //если да то да, если нет, то нет(тернарненько)
         user.comparePassword(req.body.password, (err, isMatch) => {
          !isMatch ?
          ( res.json({ loginSuccess: false, message: "Wrong password" }))
