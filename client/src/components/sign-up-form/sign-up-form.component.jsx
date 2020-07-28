@@ -1,5 +1,7 @@
 import React from 'react';
 import './sign-up-form.styles.scss';
+import { registerUser } from "../../redux/user/user.actions";
+import {connect} from 'react-redux';
 
 import InputField from '../input-field/input-field.component';
 
@@ -25,7 +27,7 @@ class SignUpForm extends React.Component {
             return;
         }
 
-        try {
+        /*try {
             //const {user} = await auth.createUserWithEmailAndPassword(email, password);
            
             //await createUserProfileDocument(user, {displayName});
@@ -38,6 +40,11 @@ class SignUpForm extends React.Component {
             });
         } catch (error) {
             console.error();
+        }*/
+
+        if (email && password && displayName) {
+            console.log(email,password)
+            this.props.registerUser(displayName, email, password);
         }
     }
 
@@ -95,5 +102,8 @@ class SignUpForm extends React.Component {
 
 }
 
+const actionsCr = {
+    registerUser: registerUser 
+}
 
-export default SignUpForm;
+export default connect(null, actionsCr)(SignUpForm);

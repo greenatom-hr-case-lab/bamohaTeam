@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { loginUser } from "../../redux/user/user.actions";
 import './sign-in-form.styles.scss';
-
+//import { useSelector, useDispatch } from 'react-redux';
+import {connect} from 'react-redux';
 import InputField from '../input-field/input-field.component';
+
+//const dispatch = useDispatch()
 
 class SignInForm extends React.Component {
     constructor(props) {
@@ -11,30 +15,34 @@ class SignInForm extends React.Component {
             email: '',
             password: ''
         }
+        //const dispatch = useDispatch()
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+ 
     handleSubmit = async event => {
         event.preventDefault();
 
         const {email, password} = this.state;
-
-        try {
-            //await auth.signInWithEmailAndPassword(email, password);
-            this.setState({email: '', password: ''});
-        } catch (error) {
-            console.log();
-        }
         
-    }
+        if (email && password) {
+            console.log(email,password)
+            this.props.loginUser(email, password);
+        }
+     }
+        
 
     handleChange = event => {
         const {value, name} = event.target;
-
         this.setState({[name]: value})
     }
+ 
+      render() {
+       // const { loggingIn } = this.props;
+        const {email, password} = this.state;
+        return (           
 
-    render() {
-        return (
             <div className='sign-in-form'>
                 <h2 className='title'>Вход</h2>
                 <span className='subtitle'>Войдите с помощью своего email и пароля</span>
@@ -43,23 +51,27 @@ class SignInForm extends React.Component {
                     <InputField 
                         name="email" 
                         type="email" 
-                        value={this.state.email} 
-                        handleChange={this.handleChange}
+                        value={email}
+                        onChange={this.handleChange}
                         label='Email'
                         required/>
                     <InputField 
                         name="password" 
                         type="password" 
-                        value={this.state.password} 
-                        handleChange={this.handleChange} 
+                        value={password} 
+                        onChange={this.handleChange}
                         label='Пароль'
                         required/>
                     <button className='form-button' type="submit">Войти</button>
                 </form>
             </div>
         );
-    }
+      }
+
 }
 
+const actionsCr = {
+    loginUser: loginUser 
+}
 
-export default SignInForm;
+export default connect(null, actionsCr)(SignInForm);

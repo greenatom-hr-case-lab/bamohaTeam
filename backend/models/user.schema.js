@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 let userSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    //_id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
         required: true
@@ -21,13 +23,14 @@ let userSchema = new Schema({
     },
     password: { 
         type: String, 
-        required: true 
+        required: true,
+        select: true
     },
     role: {
         type: String,
         enum: ['hr', 'boss', 'employee'],
         default: 'employee',
-        required: true
+        required: false
     },
     plans: [{
         type: mongoose.Schema.Types.ObjectId, 
@@ -37,6 +40,44 @@ let userSchema = new Schema({
 }, {
     collection: 'users'
 });
+
+userSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret.id;
+    }
+});
+
+userSchema.pre('save', async function (next) {
+    let user = this;
+
+    if (user.isModified('password')) {
+        console.log('password was changed')
+        bcrypt.genSalt(saltRounds, function (err, salt) {
+            if (err) return next(err);
+
+           bcrypt.hash(user.password, salt, function (err, hash) {
+                if (err) return next(err);
+                user.password = hash
+                console.log('password was hashed', user.password )
+                next()
+            })
+        })
+    } else {
+        next()
+    }
+});
+
+userSchema.methods.comparePassword = async function (plainPassword, cb) {
+password = this.password
+  await bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
+       console.log("2", plainPassword, this.password, isMatch)
+       if (err) return cb(err);
+       cb(null, isMatch)
+    })
+  
+}
 
 module.exports = mongoose.model('User', userSchema)
 

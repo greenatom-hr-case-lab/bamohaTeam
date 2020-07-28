@@ -4,16 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-const { Mongoose } = require('mongoose');
 
-const config = require("./config/db");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const userRoute = require('./routes/user.routes');
 const planRoute = require('./routes/plan.routes');
 const taskRoute = require('./routes/task.routes');
 const commentRoute = require('./routes/comment.routes');
+const authRoute = require('./routes/auth.routes');
 
 var app = express();
 
@@ -38,20 +36,14 @@ app.use('/users', userRoute);
 app.use('/plans', planRoute);
 app.use('/tasks', taskRoute);
 app.use('/comments', commentRoute);
+app.use('/authentification', authRoute)
+
+/*app.use('/test', function (req, res, next) {
+  console.log('Request Type:', req.method, 'req: ', req.body);
+  next();
+});*/
 
 module.exports = app;
-
-// Поключение к базе данных
-mongoose.connect(config.db, {useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true});
-
-// Обработчики подключения
-mongoose.connection.on("connected", () => {
-    console.log("Connection Success");
-});
-
-mongoose.connection.on("error", (err) => {
-  console.log("Failed to connect, error: " + err);
-});
 
 
 // catch 404 and forward to error handler
@@ -69,3 +61,4 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
