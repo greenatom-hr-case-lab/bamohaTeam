@@ -3,6 +3,7 @@ let mongoose = require('mongoose'),
     router = express.Router();
 
 let Task = require('../models/task.schema');
+const { Plan } = require('../helpers/_db');
 
 router.get("/", async (req, res) => {
     try {
@@ -17,16 +18,22 @@ router.get("/", async (req, res) => {
   
 
 router.post('/createTask', function (req, res, next){
-    const task = new Task( req.body);
+    const task = new Task( {title : req.body.title, 
+        description: req.body.description, 
+        start_date: req.body.start_date, 
+        end_date: req.body.end_date, 
+        result: req.body.result, 
+        comments: req.body.comments,
+        grade: req.body.grade
+    });
     task.save((err) => {
         if (err) return res.json({ success: false, err: err.message }); 
-        return res.status(200).json({ message: "Новая задача добавленa", ...task.toJSON() })
-        /*let hr = User.findById(plan.hr, (err, hr) => {
-            hr.plans = [...hr.plans, plan._id]
-            hr.save()
-            return res.status(200).json({ message: "Новый план добавлен", ...hr.toJSON() })
+        let plan = Plan.findById(req.body._id, (err, plan) => {
+            plan.tasks = [...plan.tasks, task._id]
+            plan.save()
+            return res.status(200).json({ message: "Новая задача добавлена", ...task.toJSON() })
            
-        })*/
+        })
     })
 
 
@@ -41,12 +48,15 @@ router.route('/getTasks').get(async(req, res) => {
     }
 })
 
-router.route('/editTask').put(async(req, res) => {
-    try {
-
-    } catch(e) {
-        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+router.patch('/editTask', function(req, res) {
+   
+    Task.findOneAndUpdate({_id : req.body._id},req.body, {                        
+        upsert: true, new: true
     }
+    , (err, task) => {
+        if (err) return res.status(400).send(err);
+        return res.status(200).json({ message: "Задача обновлена", ...task.toJSON() })
+    })
 })
 
 router.route('/removeTask').delete(async(req, res, next) => {
