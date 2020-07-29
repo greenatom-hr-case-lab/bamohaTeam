@@ -4,17 +4,6 @@ import axios from 'axios';
 const apiUrl = 'http://localhost:9000/users';
 
 
- export function loginUser2(email, password) {
-    //console.log(email,password)
-    const request = axios.post(`${apiUrl}/login`, {email: email, password: password})
-    .then(response => response.data)
-
-    return {
-        type: UserActionTypes.LOGIN_USER,
-        payload: request
-    }
-}
-
 export const loginUser = (email, password) => {
     console.log(email,password)
     return (dispatch) =>{
@@ -24,14 +13,9 @@ export const loginUser = (email, password) => {
     }
 }
 
-const login = user => ({
-    type: UserActionTypes.LOGIN_USER,
-    payload: {
-      ...user
-    }
-  });
 
-  export const registerUser = ({name, email, password}) => {
+
+ export const registerUser = ( name, email, password ) => {
     console.log(email,password)
     return (dispatch) => {
       axios.post(`${apiUrl}/register`, {name: name, email: email, password: password})
@@ -39,3 +23,8 @@ const login = user => ({
       })
     }
 }
+
+export const logoutUser = () => ({
+
+  type: UserActionTypes.LOGOUT_USER
+});

@@ -64,15 +64,36 @@ router.get('/find', function(req, res, next){
     console.log(res.body)
 })
 
+router.put('/updatepassword', function(req, res, next){
+    let user = User.findOneAndUpdate({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        role: req.body.role,
+        plans: req.body.plans
+    })
+    //.then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
+    //.catch(err => next(err));
+    //console.log(res.body)
+})
+
+
 router.post('/register', function(req, res, next){
     console.log(req.body)
-    const user = new User(req.body);
-    
-    user.save((err) => {
-        if (err) return res.json({ success: false, err }); 
-        return res.status(200).json({ ...user.toJSON() })
-    })
 
+    let user = User.findOne({email: req.body.email}, (err, user) => {
+        if(!user){
+            const user = new User(req.body);
+            user.save((err) => {
+                if (err) return res.json({ success: false, err }); 
+                return res.status(200).json({ ...user.toJSON() })
+            })
+        } 
+        else 
+        {
+            res.json({message: "email already exists"});
+        }         
+    })
     console.log(res.body)
 })
 

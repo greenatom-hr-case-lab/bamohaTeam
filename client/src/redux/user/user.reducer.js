@@ -4,17 +4,6 @@ const INITIAL_STATE = {
     user: null
 }
 
-/*const userReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
-        case UserActionTypes.q:
-            return {
-                ...state,
-                
-            }
-        default:
-            return state;
-    }
-}*/
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -31,4 +20,4 @@ const userReducer = (state = INITIAL_STATE, action) => {
         }
 }
 
-export default userReducer;
+export default userReducer
