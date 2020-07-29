@@ -1,7 +1,7 @@
 import React from 'react';
 import './sign-up-form.styles.scss';
 import { registerUser } from "../../redux/user/user.actions";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import InputField from '../input-field/input-field.component';
 
@@ -26,21 +26,6 @@ class SignUpForm extends React.Component {
             alert('Пароли не совпадают');
             return;
         }
-
-        /*try {
-            //const {user} = await auth.createUserWithEmailAndPassword(email, password);
-           
-            //await createUserProfileDocument(user, {displayName});
-
-            this.setState({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
-            });
-        } catch (error) {
-            console.error();
-        }*/
 
         if (email && password && displayName) {
             console.log(email,password)

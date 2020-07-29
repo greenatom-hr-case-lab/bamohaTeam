@@ -49,7 +49,7 @@ userSchema.set('toJSON', {
     }
 });
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', function (next) {
     let user = this;
 
     if (user.isModified('password')) {
@@ -60,7 +60,6 @@ userSchema.pre('save', async function (next) {
            bcrypt.hash(user.password, salt, function (err, hash) {
                 if (err) return next(err);
                 user.password = hash
-                console.log('password was hashed', user.password )
                 next()
             })
         })
@@ -68,6 +67,8 @@ userSchema.pre('save', async function (next) {
         next()
     }
 });
+
+
 
 userSchema.methods.comparePassword = async function (plainPassword, cb) {
 password = this.password
