@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     }
 
   });
-
+  
 
 router.route('/createTask').post(async(req, res, next) => {
     try {
@@ -29,6 +29,24 @@ router.route('/createTask').post(async(req, res, next) => {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
 });
+
+
+router.post('/createTask', function (req, res, next){
+    const task = new Task( req.body);
+    task.save((err) => {
+        if (err) return res.json({ success: false, err: err.message }); 
+        return res.status(200).json({ message: "Новая задача добавлен", ...task.toJSON() })
+        /*let hr = User.findById(plan.hr, (err, hr) => {
+            hr.plans = [...hr.plans, plan._id]
+            hr.save()
+            return res.status(200).json({ message: "Новый план добавлен", ...hr.toJSON() })
+           
+        })*/
+    })
+
+
+})
+
 
 router.route('/getTasks').get(async(req, res) => {
     try {

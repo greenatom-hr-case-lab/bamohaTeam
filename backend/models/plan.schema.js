@@ -51,6 +51,16 @@ let planSchema = new Schema({
     collection: 'plans'
 });
 
+planSchema.pre('save', function (next) {
+    let plan = this;
+
+    if (plan.isModified('stage')) {
+        console.log('plan was changed')
+        } else {
+        next()
+    }
+});
+
 planSchema.set('toJSON', {
     virtuals: true,
     versionKey: false,
