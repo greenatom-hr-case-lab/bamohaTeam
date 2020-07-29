@@ -4,19 +4,8 @@ const INITIAL_STATE = {
     user: null
 }
 
-/*const userReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
-        case UserActionTypes.q:
-            return {
-                ...state,
-                
-            }
-        default:
-            return state;
-    }
-}*/
 
-export default function (state = INITIAL_STATE, action) {
+const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case UserActionTypes.REGISTER_USER:
             return { ...state, user: action.payload }
@@ -30,3 +19,5 @@ export default function (state = INITIAL_STATE, action) {
             return state;
         }
 }
+
+export default userReducer

@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let planSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     employee: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
@@ -27,9 +26,10 @@ let planSchema = new Schema({
     end_date: Date,
     stage: {
         type: Number,
-        enum: [1, 2, 3, 4, 5, 6],
-        default: '1',
-        required: true
+        min: 1,
+        max: 6,
+        defalut: 1, 
+        required: true 
     },
     grade: {
         type: String,
@@ -49,6 +49,14 @@ let planSchema = new Schema({
     }]
 }, {
     collection: 'plans'
+});
+
+planSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret.id;
+    }
 });
  
 module.exports = mongoose.model('Plan', planSchema)
