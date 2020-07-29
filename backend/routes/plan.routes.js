@@ -93,20 +93,28 @@ router.get('/getPlanInfo', function(req, res, next){
     })
 })
 
-router.put('/editPlan', function(req, res, next){
-    let plan = Plan.findOneAndUpdate(req.body._id, {$set: req.body}, (err, plan) => {
-        plan.save()
+router.patch('/editPlan', function(req, res, next){
+
+    Plan.findOneAndUpdate({_id : req.body._id},req.body, {                        
+        upsert: true, new: true
+    }
+    , (err, plan) => {
+        if (err) return res.status(400).send(err);
         return res.status(200).json({ message: "План обновлен", ...plan.toJSON() })
     })
 
 })
 
-router.route('/moveStage').put(async (req, res) => {
-    try {
-
-    } catch(e) {
-        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+router.patch('/moveStage', function(req, res, next){
+    Plan.findOneAndUpdate({_id : req.body._id},{stage: (req.body.stage + 1)}, {                        
+        upsert: true, new: true
     }
+    , (err, plan) => {
+        if (err) return res.status(400).json({message: err})
+        return res.status(200).json({ message: "План обновлен", ...plan.toJSON() })
+    })
 })
+
+
 
 module.exports = router;
