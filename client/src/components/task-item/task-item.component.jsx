@@ -10,11 +10,6 @@ import './task-item.styles.scss';
 
 const TaskItem = (props) => {
 
-    /* 
-        task
-
-    */
-
     return (
         <form className='task-item'>
             <textarea className='caption' placeholder='Название задачи'></textarea>
@@ -40,6 +35,8 @@ const TaskItem = (props) => {
                 <RadioButton pointColor='aqua' value="Done">Задача выполнена</RadioButton>
                 <RadioButton pointColor='aqua' value="Not_done">Задача не выполнена</RadioButton>
             </RadioGroup>
+
+            <button type='submit' className='form-button'>Сохранить задачу</button>
 
             <p className='title'>Комментарии</p>
             <CommentCollection/>

@@ -59,16 +59,18 @@ const Plan = (props) => {
             <RadioButton pointColor='aqua' value="Not_done">Адаптация не пройдена</RadioButton>
           </RadioGroup>
 
-          <p className='title'>Комментарии</p>
-          <CommentCollection/>
-        </div>
-
-          <div className='tasks-and-nav'>
-            <div className='nav'>
+          <div className='nav'>
               <button className='form-button'>Сохранить план</button>
               <button className='form-button'>Скачать в PDF</button>
               <button className='form-button'>Передвинуть на следующий этап</button>
             </div>
+            
+          <p className='title'>Комментарии</p>
+          <CommentCollection/>
+        </div>
+
+          <div className='tasks'>
+
               <p className='title'>Задачи</p>
               <TaskCollection />
           </div>

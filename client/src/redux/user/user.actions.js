@@ -31,11 +31,11 @@ const login = user => ({
     }
   });
 
-  export const registerUser = (name, email, password, ) => {
+  export const registerUser = ({name, email, password}) => {
     console.log(email,password)
-    return (dispatch) =>{
-    axios.post(`${apiUrl}/register`, {name: name, email: email, password: password})
-    .then(response => {dispatch({type: UserActionTypes.REGISTER_USER, payload: response.data});
-    })
+    return (dispatch) => {
+      axios.post(`${apiUrl}/register`, {name: name, email: email, password: password})
+      .then(response => {dispatch({type: UserActionTypes.REGISTER_USER, payload: response.data});
+      })
     }
 }
