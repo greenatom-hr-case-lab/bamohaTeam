@@ -21,9 +21,9 @@ class ListCollection extends React.Component{
         
     */
 
- componentDidMount = async event => {
+ componentDidMount(){
         this.props.getPlanEmployeeNames(this.props.user_id);
-        console.log(this.props.user_id)
+        console.log(this.props.plans, this.props.user_id)
     }
 
 render(){
@@ -43,7 +43,7 @@ render(){
 
 const mapStateToProps = state => {
     return {
-      plans: state.plan.plans.plans,
+      plans: state.plan.plans,
       user_id: state.user.user._id
     }
   }

@@ -45,7 +45,7 @@ router.post('/getPlansEmployeeNames', function(req, res, next){
                     .populate({path: 'employee', model: 'User', select: "name", sort: {'name': -1}})
                     .exec((err, plans) => {
                         if (err) return res.status(400).send(err);
-                        return res.status(200).json({ sucess: true, plans})
+                        return res.status(200).json({ ...plans})
                     }
                     )
             }

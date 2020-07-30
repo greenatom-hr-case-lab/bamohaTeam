@@ -32,6 +32,12 @@ const StageCollection = ({title, plans}) => {
             </div>
             <div className='items-block'>
 
+                    {
+                    /*plans
+                    .map((plan) => (
+                        <CollectionItem key={plan._id} plan={plan} />
+                    ))
+                    */ }
                 <CollectionItem />
                 <CollectionItem />
             </div>
