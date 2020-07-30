@@ -13,7 +13,7 @@ export const createPlan = ( employee, boss, hr, position, created_at,
       })
     }
 }
-  
+     
   
   export const getPlanInfo = (  plan_id ) => {
     return (dispatch) => {
