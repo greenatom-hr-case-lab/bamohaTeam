@@ -48,16 +48,16 @@ router.post('/createPlan', function (req, res, next){
 
 
 
-router.get('/getPlans', function(req, res, next){
+router.get('/getPlansEmployeeNames', function(req, res, next){
        
         let user = User.findById(req.body._id, (err, user) => {
             
             if(!user){
              console.log(req.body) 
              return res.json({ success: false, message: "Fuck", err: err})}
-            else{
-                let plansID = user.plans
-                    Plan.find({'_id': { $in: plansID}})  
+            else{ //'Members', '_id name', null, { sort: { 'created_at': -1 } }
+                    Plan.find({'_id': { $in: user.plans}})
+                    .populate({path: 'employee', model: 'User', select: "name", sort: {'name': -1}})
                     .exec((err, plans) => {
                         if (err) return res.status(400).send(err);
                         return res.status(200).json({ sucess: true, plans})
@@ -69,28 +69,15 @@ router.get('/getPlans', function(req, res, next){
 
 router.get('/getPlanInfo', function(req, res, next){
        
-    let plan = Plan.findById(req.body._id, (err, plan) => {
-        
-        if(!plan){
-         console.log(req.body) 
-         return res.json({ success: false, message: "Fuck", err: err})}
-        else{
-            console.log(req.body) 
-            let planTasksID = plan.tasks
-                Task.find({'_id': { $in: planTasksID}})
-                .exec((err, planTasks) => {               
-                   /* Comment.find({'_id': { $in: taskCommentsID}})
-                    .exec((err, taskComments) => {*/
-                        if (err) return res.status(400).send(err);                        
-                        let planCommsID = plan.comments
-                         Comment.find({'_id': { $in: planCommsID}})
-                             .exec((err, planComments) => {
-                             if (err) return res.status(400).send(err);
-                             return res.status(200).json({ sucess: true, plan, planTasks, planComments})
-                          })
-                        })                
-        }
-    })
+    Plan.findById(req.body._id)
+    .populate({path: 'tasks', model: 'Task', populate: {
+        path: 'comments', model: 'Comment'    
+    }})
+    .populate('comments')
+    .exec((err, plan) => {
+        if (err) return res.status(400).send(err);
+        return res.status(200).json({ sucess: true, plan})   
+})
 })
 
 router.patch('/editPlan', function(req, res, next){
@@ -111,7 +98,7 @@ router.patch('/moveStage', function(req, res, next){
     }
     , (err, plan) => {
         if (err) return res.status(400).json({message: err})
-        return res.status(200).json({ message: "План обновлен", ...plan.toJSON() })
+        return res.status(200).json({ message: "Стадия обновлена", ...plan.toJSON() })
     })
 })
 
