@@ -7,13 +7,11 @@ const apiUrl = 'http://localhost:9000/users';
 export const loginUser = (email, password) => {
     console.log(email,password)
     return (dispatch) =>{
-    axios.post(`${apiUrl}/login`, {email: email, password: password})
-    .then(response => {dispatch({type: UserActionTypes.LOGIN_USER, payload: response.data});
+      axios.post(`${apiUrl}/login`, {email: email, password: password})
+      .then(response => {dispatch({type: UserActionTypes.LOGIN_USER, payload: response.data});
     })
     }
 }
-
-
 
  export const registerUser = ( name, email, password ) => {
     console.log(email,password)

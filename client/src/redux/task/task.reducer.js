@@ -9,7 +9,12 @@ const taskReducer = (state = INITIAL_STATE, action) => {
         case TaskActionTypes.ADD_TASK:
             return {
                 ...state,
-                
+                tasks: [...tasks, action.payload]
+            }
+        case TaskActionTypes.EDIT_TASK:
+            return {
+                ...state,
+                task: action.payload
             }
         default:
             return state;
