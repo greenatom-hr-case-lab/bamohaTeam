@@ -3,81 +3,50 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:9000/plans';
 
-export const createPlan = async ({ employee, boss, hr, position, created_at, 
-                                start_date, end_date, stage, grade, result }) => {
+
+export const createPlan = ( employee, boss, hr, position, created_at, 
+    start_date, end_date, stage, grade, result ) => {
     return (dispatch) => {
-      return axios.post(`${apiUrl}/createPlan`, {employee, boss, hr, position, created_at, 
-                                                start_date, end_date, stage, grade, result})
-        .then(response => {
-          dispatch(createPostSuccess(response.data))
-        })
-        .catch(error => {
-          throw(error);
-        });
-    };
-  };
-   
-  export const createPlan = async (data) => {
-    return {
-      type: PlanActionTypes.ADD_PLAN,
-      payload: {
-        _id: data._id,
-        employee: data.employee,
-        boss: data.boss,
-        hr: data.hr,
-        position: data.position,
-        created_at: data.created_at,
-        start_date: data.start_date,
-        end_date: data.end_date,
-        stage: data.stage,
-        grade: data.grade,
-        result: data.result
-      }
+      axios.post(`${apiUrl}/createPlan`, {employee: employee, boss: boss, hr: hr, position: position, created_at: created_at, 
+        start_date: start_date, end_date: end_date, stage: stage, grade: grade, result: result})
+      .then(response => {dispatch({type: PlanActionTypes.CREATE_PLAN, payload: response.data});
+      })
     }
-
-    
-  };
+}
   
-
-  export const getUsersPlans = async (_id) => {
-    const request = axios.get(`${apiUrl}/getPlans`)
-      .then(response => {
-        console.log(response);
-
-        return response.data;
+  
+  export const getPlanInfo = (  plan_id ) => {
+    return (dispatch) => {
+      axios.post(`${apiUrl}/getPlanInfo`, {_id : plan_id})
+      .then(response => {dispatch({type: PlanActionTypes.GET_PLAN_INFO, payload: response.data});
       })
-    
-    return {
-      type: PlanActionTypes.GET_PLANS,
-      payload: request
     }
-  };
+}
 
 
-  export const editPlan = async (_id) => {
-    const request = axios.put(`${apiUrl}/editPlan&id=${_id}`)
-      .then(response => {
-
-
-        return response.data;
-      })
-
-      return {
-        type: PlanActionTypes.EDIT_PLAN,
-        payload: request
-      }
-  };
-
-  export const moveStage = async (_id) => {
-    const request = axios.put(`${apiUrl}/moveStage&id=${_id}`)
-      .then(response => {
-
-
-        return response.data;
-      })
-
-      return {
-        type: PlanActionTypes.MOVE_STAGE,
-        payload: request
-      }
+export const getPlanEmployeeNames = (  user_id ) => {
+  return (dispatch) => {
+    axios.post(`${apiUrl}/getPlansEmployeeNames`, {_id : user_id })
+    .then(response => {dispatch({type: PlanActionTypes.GET_EMPLOYEE_NAMES, payload: response.data});
+    })
   }
+}
+
+
+  export const editPlan = (  plan_id, employee, boss, hr, position, created_at, 
+    start_date, end_date, stage, grade, result ) => {
+    return (dispatch) => {
+      axios.post(`${apiUrl}/editPlan`, {_id : plan_id, employee: employee, boss: boss, hr: hr, position: position, created_at: created_at, 
+        start_date: start_date, end_date: end_date, stage: stage, grade: grade, result: result })
+      .then(response => {dispatch({type: PlanActionTypes.EDIT_PLAN, payload: response.data});
+      })
+    }
+}
+
+export const moveStage = (  plan_id, stage ) => {
+  return (dispatch) => {
+    axios.post(`${apiUrl}/moveStage`, {_id : plan_id, stage: stage })
+    .then(response => {dispatch({type: PlanActionTypes.MOVE_STAGE, payload: response.data});
+    })
+  }
+}
