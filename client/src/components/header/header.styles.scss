@@ -31,6 +31,8 @@
 				cursor: pointer;
 				text-decoration: none;
 				color: aqua;
+				background-color: transparent;
+				border: none;
 
 				&:active, &:focus {
 					outline: none;

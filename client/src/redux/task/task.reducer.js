@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const taskReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case TaskActionTypes.q:
+        case TaskActionTypes.ADD_TASK:
             return {
                 ...state,
                 

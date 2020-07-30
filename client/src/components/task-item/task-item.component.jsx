@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import CommentCollection from '../../components/comment-collection/comment-collection.component';
 
@@ -10,19 +10,19 @@ import './task-item.styles.scss';
 
 const TaskItem = (props) => {
 
-    /* 
-        task
-
-    */
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
 
     return (
         <form className='task-item'>
             <textarea className='caption' placeholder='Название задачи'></textarea>
             <div className='dates'>
                 <p className='title'> Начало </p>
-                <DatePicker selected={new Date()}  />   
+                <DatePicker selected={startDate}
+                            onChange={date => setStartDate(date)}/>   
                 <p className='title'> Конец </p>  
-                <DatePicker selected={new Date()} />
+                <DatePicker selected={endDate}
+                            onChange={date => setEndDate(date)}/>
             </div>
             <textarea className='description' placeholder='Описание'></textarea>
 
@@ -40,6 +40,8 @@ const TaskItem = (props) => {
                 <RadioButton pointColor='aqua' value="Done">Задача выполнена</RadioButton>
                 <RadioButton pointColor='aqua' value="Not_done">Задача не выполнена</RadioButton>
             </RadioGroup>
+
+            <button type='submit' className='form-button'>Сохранить задачу</button>
 
             <p className='title'>Комментарии</p>
             <CommentCollection/>

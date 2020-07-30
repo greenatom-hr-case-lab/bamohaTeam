@@ -56,7 +56,7 @@ router.post('/login', function(req, res, next){
     console.log(res.body)
     })
 })
-
+ 
 router.get('/find', function(req, res, next){
     const user = User.find()
     .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
