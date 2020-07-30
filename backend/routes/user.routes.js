@@ -79,8 +79,6 @@ router.put('/updatepassword', function(req, res, next){
 
 
 router.post('/register', function(req, res, next){
-    console.log(req.body)
-
     let user = User.findOne({email: req.body.email}, (err, user) => {
         if(!user){
             const user = new User(req.body);
@@ -94,7 +92,6 @@ router.post('/register', function(req, res, next){
             res.json({message: "email already exists"});
         }         
     })
-    console.log(res.body)
 })
 
 module.exports = router;

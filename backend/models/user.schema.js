@@ -50,11 +50,11 @@ userSchema.set('toJSON', {
 });
 
 userSchema.pre('save', function (next) {
-    let user = this;
+    let user = this; 
 
     if (user.isModified('password')) {
         console.log('password was changed')
-        await bcrypt.genSalt(saltRounds, function (err, salt) {
+        bcrypt.genSalt(saltRounds, function (err, salt) {
             if (err) return next(err);
 
             bcrypt.hash(user.password, salt, function (err, hash) {

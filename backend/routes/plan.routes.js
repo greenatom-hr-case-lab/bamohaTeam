@@ -8,16 +8,6 @@ let Task = require('../models/task.schema')
 let User = require('../models/user.schema');
 const { use } = require('bcrypt/promises');
 
-router.get("/", async (req, res) => {
-    try {
-        const plans = await Plan.find({});
-        res.send(plans);
-        
-    } catch (e) {
-        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
-    }
-})
-
 router.post('/createPlan', function (req, res, next){
     const plan = new Plan( req.body);
     plan.save((err) => {
@@ -25,14 +15,12 @@ router.post('/createPlan', function (req, res, next){
         //return res.status(200).json({ message: "Новый план добавлен", ...plan.toJSON() })
         let employee = User.findById(plan.employee, (err, employee) => {
             employee.plans = [...employee.plans, plan._id]
-            //return res.status(200).json({ message: "Новый план добавлен", ...employee.toJSON() })
             employee.save()
         })
 
         let boss = User.findById(plan.boss, (err, boss) => {
             boss.plans = [...boss.plans, plan._id]
-           // return res.status(200).json({ message: "Новый план добавлен", ...boss.toJSON() })
-           boss.save()
+            boss.save()
         })
 
         let hr = User.findById(plan.hr, (err, hr) => {
@@ -42,11 +30,7 @@ router.post('/createPlan', function (req, res, next){
            
         })
     })
-
-
 })
-
-
 
 router.get('/getPlansEmployeeNames', function(req, res, next){
        
