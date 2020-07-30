@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 import './stage-collection.styles.scss';
 
-const StageCollection = ({title}) => {
+const StageCollection = ({title, plans}) => {
 
     {/* 
         plans
@@ -31,11 +31,7 @@ const StageCollection = ({title}) => {
                 }
             </div>
             <div className='items-block'>
-            {/* {
-                    items.map(({id, ...otherItemProps}) => (
-                        <CollectionItem key={id} {...otherItemProps}/>
-                    ))
-                } */}
+
                 <CollectionItem />
                 <CollectionItem />
             </div>

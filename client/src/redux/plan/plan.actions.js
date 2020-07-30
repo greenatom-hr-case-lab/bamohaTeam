@@ -26,7 +26,7 @@ export const createPlan = ( employee, boss, hr, position, created_at,
 
 export const getPlanEmployeeNames = (  user_id ) => {
   return (dispatch) => {
-    axios.post(`${apiUrl}/getPlansEmployeeNames`, {_id : user_id })
+    axios.get(`${apiUrl}/getPlansEmployeeNames`, {_id : user_id })
     .then(response => {dispatch({type: PlanActionTypes.GET_EMPLOYEE_NAMES, payload: response.data});
     })
   }

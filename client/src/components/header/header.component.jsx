@@ -10,9 +10,8 @@ import { render } from 'react-dom';
 
 const Header = ({logoutUser}) => {
 
-    const handleClick = async event => {
+    const handleClick = event => {
         event.preventDefault();
-        this.props.logoutUser();
     }
 
     
@@ -26,7 +25,7 @@ const Header = ({logoutUser}) => {
         
         <div className='navigation'>
         	<Link to='/grades' className='nav-option'>Оценки</Link>
-        	<button onClick={logoutUser} className='nav-option'>
+        	<button  className='nav-option'>
                 Профиль
                 <img className='profile-pic' 
                     src={require('../../assets/users/christian.jpg')} 
