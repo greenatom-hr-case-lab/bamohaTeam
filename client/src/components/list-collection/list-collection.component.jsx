@@ -5,39 +5,45 @@ import { getPlanEmployeeNames } from "../../redux/plan/plan.actions";
 import StageCollection from '../stage-collection/stage-collection.component';
 
 import './list-collection.styles.scss'
+//= ({plans, user_id}) =>
+class ListCollection extends React.Component{
 
-const ListCollection = ({plans, user_id}) => {
+    constructor(props) {
+        super(props);
+      }
 
-    {/* 
+    /* 
         plans_1 = plans, где stage == 1
         2
         3
         4
         5
         
-    */}
+    */
 
-    useEffect(() => {
-        this.props.getPlanEmployeeNames(user_id);
-    })
+ componentDidMount = async event => {
+        this.props.getPlanEmployeeNames(this.props.user_id);
+        console.log(this.props.user_id)
+    }
 
-console.log(plans)
-    return (
+render(){
+   return (
         
         <div className='list-collection'>
-            <StageCollection key='1' title='Создание плана' plans={plans}/>
+            <StageCollection key='1' title='Создание плана' plans={this.props.plans}/>
             <StageCollection key='2' title='Заполнение сотрудником'/>
             <StageCollection key='3' title='Согласование руководителем'/>
             <StageCollection key='4' title='Выполнение'/>
             <StageCollection key='5' title='Оценка руководителем'/>
         </div>
     )
+    }
 }
 
 
 const mapStateToProps = state => {
     return {
-      plans: state.plan.plans,
+      plans: state.plan.plans.plans,
       user_id: state.user.user._id
     }
   }
