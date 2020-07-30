@@ -13,7 +13,7 @@ export const createPlan = ( employee, boss, hr, position, created_at,
       })
     }
 }
-  
+     
   
   export const getPlanInfo = (  plan_id ) => {
     return (dispatch) => {
@@ -24,9 +24,10 @@ export const createPlan = ( employee, boss, hr, position, created_at,
 }
 
 
-export const getPlanEmployeeNames = (  user_id ) => {
+export const getPlanEmployeeNames = ( user_id ) => {
+  console.log(user_id)
   return (dispatch) => {
-    axios.get(`${apiUrl}/getPlansEmployeeNames`, {_id : user_id })
+    axios.post(`${apiUrl}/getPlansEmployeeNames`, ({_id : user_id }))
     .then(response => {dispatch({type: PlanActionTypes.GET_EMPLOYEE_NAMES, payload: response.data});
     })
   }

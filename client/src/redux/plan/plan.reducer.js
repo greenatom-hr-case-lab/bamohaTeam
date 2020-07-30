@@ -19,6 +19,12 @@ const planReducer = (state = INITIAL_STATE, action) => {
                  
             }
 
+        case PlanActionTypes.GET_EMPLOYEE_NAMES:
+            return {
+                ...state,
+                plans: action.payload
+            }
+
         case PlanActionTypes.GET_PLANS:
             return action.plans;
 

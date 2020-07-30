@@ -32,8 +32,9 @@ router.post('/createPlan', function (req, res, next){
     })
 })
 
-router.get('/getPlansEmployeeNames', function(req, res, next){
+router.post('/getPlansEmployeeNames', function(req, res, next){
        
+    console.log(req.body);
         let user = User.findById(req.body._id, (err, user) => {
             
             if(!user){
