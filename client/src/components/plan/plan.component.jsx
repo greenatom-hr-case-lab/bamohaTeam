@@ -61,7 +61,7 @@ const Plan = (props) => {
 
           <div className='nav'>
               <button className='form-button'>Сохранить план</button>
-              <button className='form-button'>Скачать в PDF</button>
+              {/*<button className='form-button'>Скачать в PDF</button> */}
               <button className='form-button'>Передвинуть на следующий этап</button>
             </div>
             
@@ -69,11 +69,10 @@ const Plan = (props) => {
           <CommentCollection/>
         </div>
 
-          <div className='tasks'>
-
-              <p className='title'>Задачи</p>
-              <TaskCollection />
-          </div>
+        <div className='tasks'>
+            <p className='title'>Задачи</p>
+            <TaskCollection />
+        </div>
       </form>
     );
 }
