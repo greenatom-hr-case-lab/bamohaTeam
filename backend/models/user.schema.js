@@ -24,7 +24,7 @@ let userSchema = new Schema({
     password: { 
         type: String, 
         required: true,
-        select: false
+        select: true
     },
     role: {
         type: String,
@@ -72,6 +72,7 @@ userSchema.pre('save', function (next) {
 
 userSchema.methods.comparePassword = async function (plainPassword, cb) {
 password = this.password
+console.log("1", plainPassword, password)
   await bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
        console.log("2", plainPassword, this.password, isMatch)
        if (err) return cb(err);
